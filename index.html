@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>MVP Gwénolé LE HENAFF</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Share+Tech+Mono" rel="stylesheet">
+        <style>
+            .no-space {
+                margin: 0;
+                padding: 0;
+            }
+            .hide {
+                    display: none;
+            }
+            body {
+                font-family: 'Open Sans', sans-serif;
+                width: 100%;
+                height: 100%;
+                background-image: url('background.jpg');
+                background-position: center;
+                background-size: auto;
+            }
+            header {
+                width: 100%;
+                height: 3em;
+                background-color: #fb9b41;
+                color: white;
+            }
+            header h1 {
+                float: left;
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 3em;
+                cursor: default;
+            }
+            header nav {
+                float: right;
+            }
+            header nav i {
+                cursor: pointer;
+                margin-right: 15px;
+            }
+            header nav i:hover {
+                color: #000;
+            }
+            main {
+                clear: both;
+                height: 100%;
+                padding: 10px;
+                color: white;
+            }
+            main div {
+                height: 100%;
+                margin-bottom: -1px;
+            }
+            main #game {
+                width: 100%;
+                text-align: center;
+                margin-top: 20%;
+            }
+            main #game #new {
+                width: 100%;
+                font-weight: bold;
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 40px;
+                cursor: pointer;
+            }
+            main #game #new:hover {
+                color: red;
+            }
+
+            @media all and (max-width:768px) {
+                header {
+                    height: 6em;
+                }
+                header h1 {
+                    font-size: 2em;
+                    width: 100%;
+                    text-align: center;
+                }
+                header nav {
+                    float: left;
+                    width: 100%;
+                    text-align: center;
+                    border-top: 2px solid white;
+                    padding-top: 0.3em;
+                }
+            }
+        </style>
+    </head>
+    <body class="no-space">
+        <header>
+            <h1 class="no-space">Gwénolé LE HENAFF</h1>
+            <nav>
+                <i id="whoIamBtn" class="fa fa-user fa-3x" aria-hidden="true"></i>
+                <i id="projetsBtn" class="fa fa-briefcase fa-3x" aria-hidden="true"></i>
+                <i id="gameBtn" class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
+                <i id="reseauxBtn" class="fa fa-lightbulb-o fa-3x" aria-hidden="true"></i>
+            </nav>
+        </header>
+        <main>
+            <div id="whoIam">
+                Post haec Gallus Hierapolim profecturus ut expeditioni specie tenus adesset, Antiochensi plebi suppliciter obsecranti ut inediae dispelleret metum, quae per multas difficilisque causas adfore iam sperabatur, non ut mos est principibus, quorum diffusa potestas localibus subinde medetur aerumnis, disponi quicquam statuit vel ex provinciis alimenta transferri conterminis, sed consularem Syriae Theophilum prope adstantem ultima metuenti multitudini dedit id adsidue replicando quod invito rectore nullus egere poterit victu.
+            </div>
+            <div id="projets" class="hide">
+                <ul>
+                    <li>AFPA
+                        <ul>
+                            <li>CV en HTML5/CSS3</li>
+                            <li>Liste de tâche en binôme</li>
+                            <li>Liste de tâche en solo</li>
+                        </ul>
+                    </li>
+                    <li>Personnel
+                        <ul>
+                            <li>Modifications du jeu Kerbal Space Program</li>
+                            <li>Travaux sur le moteur graphique MonoGame</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div id="game" class="hide">
+                <span id="newGameBtn">NEW GAME</span>
+            </div>
+            <div id="reseaux" class="hide">
+                reseaux
+            </div>
+        </main>
+    </body>
+    <script type="text/javascript">
+        var whoIamBtn =     document.getElementById('whoIamBtn');
+        var projectBtn =    document.getElementById('projetsBtn');
+        var gameBtn =       document.getElementById('gameBtn');
+        var reseauxBtn =    document.getElementById('reseauxBtn');
+        var whoIam =        document.getElementById('whoIam');
+        var project =       document.getElementById('projets');
+        var game =          document.getElementById('game');
+        var reseaux =       document.getElementById('reseaux');
+        var newGameBtn =    document.getElementById('newGameBtn');
+        var rocket;
+
+        function show (toShow, toHide) {
+            toShow.classList.remove("hide");
+            for (var i = toHide.length -1; i>=0; i--) {
+                toHide[i].classList.add("hide");
+            }
+        }
+
+        function newGame() {
+            rocket = document.createElement("img");
+            rocket.src = "fusee.png";
+            rocket.setAttribute("height","50px");
+            rocket.setAttribute("id","fusee");
+            rocket.setAttribute("position","absolute");
+            rocket.setAttribute("right", (window.innerWidth) / 2) + "px";
+            rocket.setAttribute("top", (window.innerHeight) / 2) + "px";
+            game.appendChild(rocket);
+        }
+
+        whoIamBtn.addEventListener("click",     function() { show(whoIam, [project, game, reseaux]); });
+        projectBtn.addEventListener("click",    function() { show(project, [whoIam, game, reseaux]); });
+        gameBtn.addEventListener("click",       function() { show(game, [project, whoIam, reseaux]); });
+        reseauxBtn.addEventListener("click",    function() { show(reseaux, [project, game, whoIam]); });
+        newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); newGame(); });
+
+
+    </script>
+</html>
