@@ -5,6 +5,7 @@
         <title>MVP Gwénolé LE HENAFF</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Share+Tech+Mono" rel="stylesheet">
+        <link rel="icon" type="image/ico" href="favicon.ico">
         <style>
             .no-space {
                 margin: 0;
@@ -53,6 +54,9 @@
                 height: 100%;
                 margin-bottom: -1px;
             }
+            main #whoIam #knowledge {
+                text-align: center;
+            }
             main #game {
                 width: 100%;
                 text-align: center;
@@ -65,8 +69,21 @@
                 font-size: 40px;
                 cursor: pointer;
             }
+            main #game #rocket {
+                    text-align: justify;
+            }
             main #game #new:hover {
                 color: red;
+            }
+
+            main #reseaux a {
+                display: block;
+                margin-left: 25%;
+                color: white;
+            }
+
+            main #reseaux a:hover {
+                color: #6772ff;
             }
 
             @media all and (max-width:768px) {
@@ -85,6 +102,13 @@
                     border-top: 2px solid white;
                     padding-top: 0.3em;
                 }
+                main #reseaux {
+                    margin-top: 25%;
+                }
+                main #reseaux a {
+                    margin-left: 0;
+                    text-align: center;
+                }
             }
         </style>
     </head>
@@ -92,26 +116,40 @@
         <header>
             <h1 class="no-space">Gwénolé LE HENAFF</h1>
             <nav>
-                <i id="whoIamBtn" class="fa fa-user fa-3x" aria-hidden="true"></i>
-                <i id="projetsBtn" class="fa fa-briefcase fa-3x" aria-hidden="true"></i>
-                <i id="gameBtn" class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
-                <i id="reseauxBtn" class="fa fa-lightbulb-o fa-3x" aria-hidden="true"></i>
+                <i id="whoIamBtn" class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i>
+                <i id="projetsBtn" class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i>
+                <i id="gameBtn" class="fa fa-gamepad fa-3x" title="Mini Jeux" aria-hidden="true"></i>
+                <i id="reseauxBtn" class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i>
             </nav>
         </header>
         <main>
             <div id="whoIam">
-                Post haec Gallus Hierapolim profecturus ut expeditioni specie tenus adesset, Antiochensi plebi suppliciter obsecranti ut inediae dispelleret metum, quae per multas difficilisque causas adfore iam sperabatur, non ut mos est principibus, quorum diffusa potestas localibus subinde medetur aerumnis, disponi quicquam statuit vel ex provinciis alimenta transferri conterminis, sed consularem Syriae Theophilum prope adstantem ultima metuenti multitudini dedit id adsidue replicando quod invito rectore nullus egere poterit victu.
+                <div id="knowledge">
+                    <a href="https://www.w3.org/html/" title="HTML"><img src="html.png" alt="HTML" /></a>
+                    <a href="https://www.w3.org/css/" title="CSS"><img src="css.png" alt="CSS" /></a>
+                    <a href="https://www.javascript.com/" title="JavaScript"><img src="js.png" alt="JS" /></a>
+                    <a href="https://www.perl.org/" title="Perl"><img src="perl.png" alt="Perl" /></a>
+                    <a href="http://www.tcl.tk/" title="Tcl"><img src="tcl.png" alt="Tcl" /></a>
+                    <a href="http://www.microsoft.com/net/" title="C#"><img src="csharp.png" alt="C#" /></a>
+                    <a href="http://www.monodevelop.com/" title="MonoDevelop"><img src="monodevelop.png" alt="MonoDevelop" /></a>
+                    <a href="https://www.xamarin.com/studio" title="Xamarin Studio"><img src="xamarin.png" alt="Xamarin Studio" /></a>
+                    <a href="https://unity3d.com/" title="Unity 3D"><img src="unity3d.png" alt="Unity3d" /></a>
+                    <a href="http://www.monogame.net/" title="MonoGame"><img src="monogame.png" alt="MonoGame" /></a>
+                </div>
+                <div>
+                    Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans les développements de logiciels et de jeux vidéo.
+                </div>
             </div>
             <div id="projets" class="hide">
                 <ul>
-                    <li>AFPA
+                    <li>Projets AFPA :
                         <ul>
-                            <li>CV en HTML5/CSS3</li>
-                            <li>Liste de tâche en binôme</li>
-                            <li>Liste de tâche en solo</li>
+                            <li>CV en HTML5/CSS3/JS</li>
+                            <li><a href="Projets/toDoList-Solo">Liste de tâche en solo</a></li>
+                            <li><a href="Projets/toDoList-Binome">Liste de tâche en binôme</a></li>
                         </ul>
                     </li>
-                    <li>Personnel
+                    <li>Projets Personnel :
                         <ul>
                             <li>Modifications du jeu Kerbal Space Program</li>
                             <li>Travaux sur le moteur graphique MonoGame</li>
@@ -124,11 +162,15 @@
                 <span id="newGameBtn">NEW GAME</span>
             </div>
             <div id="reseaux" class="hide">
-                reseaux
+                <a href="#"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
+                <a href="#"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
+                <a href="https://github.com/malahx"><i class="fa fa-github fa-2x" aria-hidden="true"></i> GitHub</a>
+                <a href="https://framagit.org/u/Malah"><i class="fa fa-gitlab fa-2x" aria-hidden="true"></i> FramaGit</a>
             </div>
         </main>
     </body>
     <script type="text/javascript">
+        var currentGame;
         var whoIamBtn =     document.getElementById('whoIamBtn');
         var projectBtn =    document.getElementById('projetsBtn');
         var gameBtn =       document.getElementById('gameBtn');
@@ -138,7 +180,6 @@
         var game =          document.getElementById('game');
         var reseaux =       document.getElementById('reseaux');
         var newGameBtn =    document.getElementById('newGameBtn');
-        var rocket;
 
         function show (toShow, toHide) {
             toShow.classList.remove("hide");
@@ -147,22 +188,77 @@
             }
         }
 
-        function newGame() {
-            rocket = document.createElement("img");
-            rocket.src = "fusee.png";
-            rocket.setAttribute("height","50px");
-            rocket.setAttribute("id","fusee");
-            rocket.setAttribute("position","absolute");
-            rocket.setAttribute("right", (window.innerWidth) / 2) + "px";
-            rocket.setAttribute("top", (window.innerHeight) / 2) + "px";
-            game.appendChild(rocket);
+        function vector2(rocket, x, y) {
+            this.x = x;
+            this.y = y;
+            this.rocket = rocket;
+            this.width = function(speed) {
+                this.x += speed;
+                this.rocket.setAttribute("left", this.x + "px");
+            }
+            this.height = function(speed) {
+                this.y += speed;
+                this.rocket.setAttribute("top", this.y + "px");
+            }
+            this.setWidth = function(posX) {
+                this.x = posX;
+                this.rocket.setAttribute("left", this.x + "px");
+            }
+            this.setHeight = function(posY) {
+                this.y = posY;
+                this.rocket.setAttribute("top", this.y + "px");
+            }
+            this.up = function() {
+                return this.y;
+            }
+            this.down = function() {
+                return this.y + 89;
+            }
+            this.left = function() {
+                return this.x;
+            }
+            this.right = function() {
+                return this.x + 50;
+            }
+            this.setWidth(x);
+            this.setHeight(y);
+        }
+
+        function Game() {
+            var x = (window.innerWidth - 50) / 2;
+            var y = (window.innerHeight);
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
+            this.rocket = document.createElement("img");
+            this.rocket.src = "fusee.png";
+            this.rocket.setAttribute("id","rocket");
+            this.rocket.setAttribute("position","fixed");
+            this.position = new vector2(this.rocket, x, y);
+            this.speed = 0;
+            this.accelerate = 0;
+            this.burn = false;
+            game.appendChild(this.rocket);
+            this.Update = function() {
+                if (currentGame.position.down > window.innerHeight) {
+                  currentGame.position.setHeight(window.innerHeight - 89)
+                  currentGame.accelerate = 0;
+                  return;
+                }
+                if (game.burn) {
+                  currentGame.accelerate++;
+                } else {
+                  currentGame.accelerate--;
+                }
+                currentGame.speed += currentGame.accelerate;
+                setTimeout(currentGame.Update, 50);
+            }
         }
 
         whoIamBtn.addEventListener("click",     function() { show(whoIam, [project, game, reseaux]); });
         projectBtn.addEventListener("click",    function() { show(project, [whoIam, game, reseaux]); });
         gameBtn.addEventListener("click",       function() { show(game, [project, whoIam, reseaux]); });
         reseauxBtn.addEventListener("click",    function() { show(reseaux, [project, game, whoIam]); });
-        newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); newGame(); });
+        newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); currentGame = new Game(); currentGame.Update(); });
 
 
     </script>
