@@ -88,7 +88,6 @@ var ToDo = function(task, strike = false, id = null) {
         edit.focus();
         console.log("ToggleEdit: " + fetch.id);
     }
-    this.toDo.node.addEventListener('drop');
     this.txt.node.addEventListener('click', this.ToggleEdit);
     this.edit.node.addEventListener('input', this.SaveEdit);
     this.edit.node.addEventListener('blur', this.ToggleEdit);
