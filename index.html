@@ -6,121 +6,56 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Share+Tech+Mono" rel="stylesheet">
         <link rel="icon" type="image/ico" href="favicon.ico">
-        <style>
-            .no-space {
-                margin: 0;
-                padding: 0;
-            }
-            .hide {
-                    display: none;
-            }
-            body {
-                font-family: 'Open Sans', sans-serif;
-                width: 100%;
-                height: 100%;
-                background-image: url('img/background.jpg');
-                background-position: center;
-                background-size: auto;
-            }
-            header {
-                width: 100%;
-                height: 3em;
-                background-color: #fb9b41;
-                color: white;
-            }
-            header h1 {
-                float: left;
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 3em;
-                cursor: default;
-            }
-            header nav {
-                float: right;
-            }
-            header nav i {
-                cursor: pointer;
-                margin-right: 15px;
-            }
-            header nav i:hover {
-                color: #000;
-            }
-            main {
-                clear: both;
-                height: 100%;
-                padding: 10px;
-                color: white;
-            }
-            main div {
-                height: 100%;
-                margin-bottom: -1px;
-            }
-            main #whoIam #knowledge {
-                text-align: center;
-            }
-            main #game {
-                width: 100%;
-                text-align: center;
-                margin-top: 20%;
-            }
-            main #game #new {
-                width: 100%;
-                font-weight: bold;
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 40px;
-                cursor: pointer;
-            }
-            main #game #rocket {
-                    text-align: justify;
-            }
-            main #game #new:hover {
-                color: red;
-            }
+        <link rel="stylesheet" href="index.css">
+        <script type="text/javascript" src="rocket.js"></script>
+        <script type="text/javascript">
+            var whoIamBtn,
+                projectBtn,
+                gameBtn,
+                reseauxBtn,
+                whoIam,
+                project,
+                game,
+                reseaux,
+                newGameBtn;
 
-            main #reseaux a {
-                display: block;
-                margin-left: 25%;
-                color: white;
+            function show (toShow, toHide) {
+                toShow.classList.remove("hide");
+                for (var i = toHide.length -1; i>=0; i--) {
+                    toHide[i].classList.add("hide");
+                }
             }
+            
+            window.onload = function() {
+                whoIamBtn =     document.getElementById('whoIamBtn');
+                projectBtn =    document.getElementById('projetsBtn');
+                gameBtn =       document.getElementById('gameBtn');
+                reseauxBtn =    document.getElementById('reseauxBtn');
+                whoIam =        document.getElementById('whoIam');
+                project =       document.getElementById('projets');
+                game =          document.getElementById('game');
+                reseaux =       document.getElementById('reseaux');
+                newGameBtn =    document.getElementById('newGameBtn');
 
-            main #reseaux a:hover {
-                color: #6772ff;
-            }
-
-            @media all and (max-width:768px) {
-                header {
-                    height: 6em;
-                }
-                header h1 {
-                    font-size: 2em;
-                    width: 100%;
-                    text-align: center;
-                }
-                header nav {
-                    float: left;
-                    width: 100%;
-                    text-align: center;
-                    border-top: 2px solid white;
-                    padding-top: 0.3em;
-                }
-                main #reseaux {
-                    margin-top: 25%;
-                }
-                main #reseaux a {
-                    margin-left: 0;
-                    text-align: center;
-                }
-            }
-        </style>
+                whoIamBtn.addEventListener("click",     function() { show(whoIam, [project, game, reseaux]); });
+                projectBtn.addEventListener("click",    function() { show(project, [whoIam, game, reseaux]); });
+                gameBtn.addEventListener("click",       function() { show(game, [project, whoIam, reseaux]); });
+                reseauxBtn.addEventListener("click",    function() { show(reseaux, [project, game, whoIam]); });
+                newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); RocketJS.currentGame = new RocketJS.Game(); RocketJS.currentGame.Update(); });
+            };
+        </script>
     </head>
     <body class="no-space">
         <header>
-            <h1 class="no-space">Gwénolé LE HENAFF</h1>
-            <nav>
-                <i id="whoIamBtn" class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i>
-                <i id="projetsBtn" class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i>
-                <i id="gameBtn" class="fa fa-gamepad fa-3x" title="Mini Jeux" aria-hidden="true"></i>
-                <i id="reseauxBtn" class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i>
-            </nav>
+            <div id="over">
+                <h1 class="no-space">Gwénolé LE HENAFF</h1>
+                <nav>
+                    <i id="whoIamBtn" class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i>
+                    <i id="projetsBtn" class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i>
+                    <i id="gameBtn" class="fa fa-gamepad fa-3x" title="Mini Jeux" aria-hidden="true"></i>
+                    <i id="reseauxBtn" class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i>
+                </nav>
+            </div>
         </header>
         <main>
             <div id="whoIam">
@@ -138,24 +73,23 @@
                 </div>
                 <div>
                     Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans les développements de logiciels et de jeux vidéo.
+                    Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discution en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#.
                 </div>
             </div>
             <div id="projets" class="hide">
-                <ul>
-                    <li>Projets AFPA :
-                        <ul>
-                            <li>CV en HTML5/CSS3/JS</li>
-                            <li><a href="Projets/toDoList-Solo">Liste de tâche en solo</a></li>
-                            <li><a href="Projets/toDoList-Binome">Liste de tâche en binôme</a></li>
-                        </ul>
-                    </li>
-                    <li>Projets Personnel :
-                        <ul>
-                            <li>Modifications du jeu Kerbal Space Program</li>
-                            <li>Travaux sur le moteur graphique MonoGame</li>
-                        </ul>
-                    </li>
-                </ul>
+                <div><h2>Projets AFPA :</h2>
+                    <ul>
+                        <li><a href="Projets/CV/index.html">CV en HTML5/CSS3/JS</a></li>
+                        <li><a href="Projets/toDoList-Solo/index.html">Liste de tâche en solo</a></li>
+                        <li><a href="Projets/toDoList-Binome/index.html">Liste de tâche en binôme</a></li>
+                    </ul>
+                </div>
+                <div><h2>Projets Personnel :</h2>
+                    <ul>
+                        <li><a href="http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1">Modifications du jeu Kerbal Space Program</a></li>
+                        <li><a href="#">Travaux sur le moteur graphique MonoGame</a></li>
+                    </ul>
+                </div>
 
             </div>
             <div id="game" class="hide">
@@ -169,97 +103,4 @@
             </div>
         </main>
     </body>
-    <script type="text/javascript">
-        var currentGame;
-        var whoIamBtn =     document.getElementById('whoIamBtn');
-        var projectBtn =    document.getElementById('projetsBtn');
-        var gameBtn =       document.getElementById('gameBtn');
-        var reseauxBtn =    document.getElementById('reseauxBtn');
-        var whoIam =        document.getElementById('whoIam');
-        var project =       document.getElementById('projets');
-        var game =          document.getElementById('game');
-        var reseaux =       document.getElementById('reseaux');
-        var newGameBtn =    document.getElementById('newGameBtn');
-
-        function show (toShow, toHide) {
-            toShow.classList.remove("hide");
-            for (var i = toHide.length -1; i>=0; i--) {
-                toHide[i].classList.add("hide");
-            }
-        }
-
-        function vector2(rocket, x, y) {
-            this.x = x;
-            this.y = y;
-            this.rocket = rocket;
-            this.width = function(speed) {
-                this.x += speed;
-                this.rocket.setAttribute("left", this.x + "px");
-            }
-            this.height = function(speed) {
-                this.y += speed;
-                this.rocket.setAttribute("top", this.y + "px");
-            }
-            this.setWidth = function(posX) {
-                this.x = posX;
-                this.rocket.setAttribute("left", this.x + "px");
-            }
-            this.setHeight = function(posY) {
-                this.y = posY;
-                this.rocket.setAttribute("top", this.y + "px");
-            }
-            this.up = function() {
-                return this.y;
-            }
-            this.down = function() {
-                return this.y + 89;
-            }
-            this.left = function() {
-                return this.x;
-            }
-            this.right = function() {
-                return this.x + 50;
-            }
-            this.setWidth(x);
-            this.setHeight(y);
-        }
-
-        function Game() {
-            var x = (window.innerWidth - 50) / 2;
-            var y = (window.innerHeight);
-            console.log(window.innerWidth);
-            console.log(window.innerHeight);
-            this.rocket = document.createElement("img");
-            this.rocket.src = "fusee.png";
-            this.rocket.setAttribute("id","rocket");
-            this.rocket.setAttribute("position","fixed");
-            this.position = new vector2(this.rocket, x, y);
-            this.speed = 0;
-            this.accelerate = 0;
-            this.burn = false;
-            game.appendChild(this.rocket);
-            this.Update = function() {
-                if (currentGame.position.down > window.innerHeight) {
-                  currentGame.position.setHeight(window.innerHeight - 89)
-                  currentGame.accelerate = 0;
-                  return;
-                }
-                if (game.burn) {
-                  currentGame.accelerate++;
-                } else {
-                  currentGame.accelerate--;
-                }
-                currentGame.speed += currentGame.accelerate;
-                setTimeout(currentGame.Update, 50);
-            }
-        }
-
-        whoIamBtn.addEventListener("click",     function() { show(whoIam, [project, game, reseaux]); });
-        projectBtn.addEventListener("click",    function() { show(project, [whoIam, game, reseaux]); });
-        gameBtn.addEventListener("click",       function() { show(game, [project, whoIam, reseaux]); });
-        reseauxBtn.addEventListener("click",    function() { show(reseaux, [project, game, whoIam]); });
-        newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); currentGame = new Game(); currentGame.Update(); });
-
-
-    </script>
 </html>
