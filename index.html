@@ -19,13 +19,17 @@
                 reseaux,
                 newGameBtn;
 
-            function show (toShow, toHide) {
+            function show (pin, unPin, toShow, toHide) {
+                pin.classList.add("black");
+                for (var i = unPin.length -1; i>=0; i--) {
+                    unPin[i].classList.remove("black");
+                }
                 toShow.classList.remove("hide");
                 for (var i = toHide.length -1; i>=0; i--) {
                     toHide[i].classList.add("hide");
                 }
             }
-            
+
             window.onload = function() {
                 whoIamBtn =     document.getElementById('whoIamBtn');
                 projectBtn =    document.getElementById('projetsBtn');
@@ -37,10 +41,10 @@
                 reseaux =       document.getElementById('reseaux');
                 newGameBtn =    document.getElementById('newGameBtn');
 
-                whoIamBtn.addEventListener("click",     function() { show(whoIam, [project, game, reseaux]); });
-                projectBtn.addEventListener("click",    function() { show(project, [whoIam, game, reseaux]); });
-                gameBtn.addEventListener("click",       function() { show(game, [project, whoIam, reseaux]); });
-                reseauxBtn.addEventListener("click",    function() { show(reseaux, [project, game, whoIam]); });
+                whoIamBtn.addEventListener("click",     function() { show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]); });
+                projectBtn.addEventListener("click",    function() { show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]); });
+                gameBtn.addEventListener("click",       function() { show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]); });
+                reseauxBtn.addEventListener("click",    function() { show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]); });
                 newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); RocketJS.currentGame = new RocketJS.Game(); RocketJS.currentGame.Update(); });
             };
         </script>
@@ -49,17 +53,25 @@
         <header>
             <div id="over">
                 <h1 class="no-space">Gwénolé LE HENAFF</h1>
-                <nav>
-                    <i id="whoIamBtn" class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i>
-                    <i id="projetsBtn" class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i>
-                    <i id="gameBtn" class="fa fa-gamepad fa-3x" title="Mini Jeux" aria-hidden="true"></i>
-                    <i id="reseauxBtn" class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i>
-                </nav>
+                <span class="subtitle">Portfolio</span>
             </div>
+            <nav>
+                <div id="empty"></div>
+                <div id="whoIamBtn" class="nav black"><i class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i><span>MOI</span></div>
+                <div id="projetsBtn" class="nav"><i class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i><span>PROJETS</span></div>
+                <div id="gameBtn" class="nav"><i class="fa fa-gamepad fa-3x" title="Games" aria-hidden="true"></i><span>JEUX</span></div>
+                <div id="reseauxBtn" class="nav"><i class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i><span>CONTACTS</span></div>
+            </nav>
         </header>
         <main>
             <div id="whoIam">
+                <div>
+                    <h2>BIO</h2>
+                    Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo.
+                    Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#.
+                </div>
                 <div id="knowledge">
+                    <h2>CONNAISSANCES</h2>
                     <a href="https://www.w3.org/html/" title="HTML"><img src="img/html.png" alt="HTML" /></a>
                     <a href="https://www.w3.org/css/" title="CSS"><img src="img/css.png" alt="CSS" /></a>
                     <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
@@ -71,20 +83,16 @@
                     <a href="https://unity3d.com/" title="Unity 3D"><img src="img/unity3d.png" alt="Unity3d" /></a>
                     <a href="http://www.monogame.net/" title="MonoGame"><img src="img/monogame.png" alt="MonoGame" /></a>
                 </div>
-                <div>
-                    Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans les développements de logiciels et de jeux vidéo.
-                    Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discution en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#.
-                </div>
             </div>
             <div id="projets" class="hide">
-                <div><h2>Projets AFPA :</h2>
+                <div><h2>PROJETS AFPA</h2>
                     <ul>
                         <li><a href="Projets/CV/index.html">CV en HTML5/CSS3/JS</a></li>
                         <li><a href="Projets/toDoList-Solo/index.html">Liste de tâche en solo</a></li>
                         <li><a href="Projets/toDoList-Binome/index.html">Liste de tâche en binôme</a></li>
                     </ul>
                 </div>
-                <div><h2>Projets Personnel :</h2>
+                <div><h2>PROJETS PERSO</h2>
                     <ul>
                         <li><a href="http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1">Modifications du jeu Kerbal Space Program</a></li>
                         <li><a href="#">Travaux sur le moteur graphique MonoGame</a></li>
@@ -96,6 +104,7 @@
                 <span id="newGameBtn">NEW GAME</span>
             </div>
             <div id="reseaux" class="hide">
+                <h2>CONTACTS</h2>
                 <a href="#"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
                 <a href="#"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
                 <a href="https://github.com/malahx"><i class="fa fa-github fa-2x" aria-hidden="true"></i> GitHub</a>
