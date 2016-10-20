@@ -1,0 +1,136 @@
+/*GLOBAL*/
+
+body {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  font-family: Ubuntu;
+  font-size: 120%;
+  background-color: #FFD3D3;
+}
+
+header, nav, main, footer {
+  text-align: center;
+  margin-top: 1em;
+  margin-left: 12em;
+  margin-right: 12em;
+  margin-bottom: 1em;
+  border: 2px solid red;
+  background-color: #FFA0A0;
+  color: red;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+h2, .back {
+  color: #890000;
+}
+
+.back:hover {
+  color: white;
+}
+
+.title {
+  width: 6%;
+  margin-left: 10%;
+  float: left;
+  text-align: right;
+}
+
+.info {
+  margin-left: 18%;
+  margin-right: 5%;
+  display: block;
+  text-align: left;
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.interligne {
+  margin-bottom: 1em;
+}
+
+/*HEADER*/
+header {
+  border-radius: 10px;
+}
+
+header a {
+  color: red;
+}
+
+header a:hover {
+  color: white;
+}
+
+/*NAV*/
+nav {
+  border: none;
+  background: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+
+nav ul li a {
+  display: block;
+  font-weight: bold;
+  width: 11em;
+  border: 2px solid #FFA0A0;
+  padding: 10px;
+  color: white;
+  background-color: red;
+}
+
+nav ul li a:hover {
+  background-color: #FFA0A0;
+  color: red;
+  border-color: red;
+}
+/*MAIN*/
+main {
+  border-style: dashed;
+}
+
+main .line {
+  width: 20em;
+  border-top: 2px solid #FFD3D3;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main #connaissances .title {
+  width: 15%;
+  margin-left: 1%;
+}
+
+/*FOOTER*/
+footer #contacts .title {
+  width: 25%;
+  margin-left: 0px;
+  margin-right: 2%;
+}
+
+footer #contacts .info {
+  margin-left: 27%;
+}
+
+/* sur chromium les fonts awesome prennent plus de hauteurs qu'une font normale */
+/*footer #contacts .mini {
+  font-size: 13px;
+}*/
+
+footer #projets {
+  margin: 1em;
+}

@@ -50,6 +50,7 @@ var RocketJS = {
     Game: function() {
         var x = (window.innerWidth - 50) / 2;
         var y = (window.innerHeight - 89);
+        console.log(window.innerHeight);
         this.rocket = document.createElement("img");
         this.rocket.src = "img/fusee.png";
         this.rocket.setAttribute("id","rocket");
