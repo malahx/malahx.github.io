@@ -100,9 +100,6 @@ main #knowledge a {
 main #knowledge a:hover {
     filter: grayscale(0);
 }
-main #projets a {
-    text-decoration: none;
-}
 main #projets ul {
     padding: 0;
 }
@@ -123,12 +120,6 @@ main #projets li:hover {
     background: none;
     color: white;
     text-decoration: underline;
-}
-main #projets li a {
-    color: inherit;
-}
-main #projets li a:visited {
-    color: inherit;
 }
 main #game {
     width: 100%;
