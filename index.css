@@ -133,7 +133,8 @@ main #game #new {
     cursor: pointer;
 }
 main #game #rocket {
-    text-align: justify;
+    position: absolute;
+    text-align: left;
 }
 main #game #new:hover {
     color: red;
