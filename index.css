@@ -32,7 +32,6 @@ header #over {
 }
 header #over h1 {
     float: left;
-    font-family: 'Share Tech Mono', monospace;
     font-size: 2em;
     text-align: center;
 }
@@ -125,10 +124,9 @@ main #game {
     width: 100%;
     margin-top: 20%;
 }
-main #game #new {
+main #game #rocketjs {
     width: 100%;
     font-weight: bold;
-    font-family: 'Share Tech Mono', monospace;
     font-size: 40px;
     cursor: pointer;
 }

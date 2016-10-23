@@ -97,6 +97,7 @@ var RocketJS = {
         }
         document.addEventListener("keydown", RocketJS.controlKeyPressDown);
         document.addEventListener("keyup", RocketJS.controlKeyPressUp);
+        setTimeout(this.Update, 50);
     },
 
     controlKeyPressDown: function(evnt) {

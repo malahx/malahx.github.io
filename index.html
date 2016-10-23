@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>MVP Gwénolé LE HENAFF</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Share+Tech+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="icon" type="image/ico" href="favicon.ico">
         <link rel="stylesheet" href="index.css">
         <script type="text/javascript" src="rocket.js"></script>
@@ -17,7 +17,7 @@
                 project,
                 game,
                 reseaux,
-                newGameBtn;
+                rocketjs;
 
             function show (pin, unPin, toShow, toHide) {
                 pin.classList.add("black");
@@ -39,13 +39,13 @@
                 project =       document.getElementById('projets');
                 game =          document.getElementById('game');
                 reseaux =       document.getElementById('reseaux');
-                newGameBtn =    document.getElementById('newGameBtn');
+                rocketjs =      document.getElementById('rocketjs');
 
                 whoIamBtn.addEventListener("click",     function() { show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]); });
                 projectBtn.addEventListener("click",    function() { show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]); });
                 gameBtn.addEventListener("click",       function() { show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]); });
                 reseauxBtn.addEventListener("click",    function() { show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]); });
-                newGameBtn.addEventListener("click",    function() { newGameBtn.classList.add("hide"); RocketJS.currentGame = new RocketJS.Game(); RocketJS.currentGame.Update(); });
+                rocketjs.addEventListener("click",      function() { rocketjs.classList.add("hide"); RocketJS.currentGame = new RocketJS.Game(); });
             };
         </script>
     </head>
@@ -98,10 +98,24 @@
                         <li onclick="location.href='#'">Travaux sur le moteur graphique MonoGame</li>
                     </ul>
                 </div>
-
+                <div><h2>Stats GitHub</h2>
+                  <ul>
+                    <li><span>Dépôts :</span><span id="github-repos"></span></li>
+                    <li><span>Abonnés :</span><span id="github-followers"></span></li>
+                    <li><span>Téléchargements :</span><span id="github-downloads"></span></li>
+                    <!--<li><span>Langages :</span><span id="github-repos"></span></li>-->
+                  </ul>
+                </div>
+                <!--<div><h2>Stats SpaceDock</h2>
+                  <ul>
+                    <li><span>Modes :</span><span id="spacedock-repos"></span></li>
+                    <li><span>Abonnés :</span><span id="spacedock-followers"></span></li>
+                    <li><span>Téléchargements :</span id="spacedock-downloads"><span></span></li>
+                  </ul>
+                </div>-->
             </div>
             <div id="game" class="hide">
-                <span id="newGameBtn">NEW GAME</span>
+                <span id="rocketjs">-> RocketJS <-</span>
             </div>
             <div id="reseaux" class="hide">
                 <h2>CONTACTS</h2>
