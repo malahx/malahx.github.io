@@ -1,129 +1,154 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>MVP Gwénolé LE HENAFF</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link rel="icon" type="image/ico" href="favicon.ico">
-        <link rel="stylesheet" href="index.css">
-        <script type="text/javascript" src="rocket.js"></script>
-        <script type="text/javascript">
-            var whoIamBtn,
-                projectBtn,
-                gameBtn,
-                reseauxBtn,
-                whoIam,
-                project,
-                game,
-                reseaux,
-                rocketjs;
 
-            function show (pin, unPin, toShow, toHide) {
-                pin.classList.add("black");
-                for (var i = unPin.length -1; i>=0; i--) {
-                    unPin[i].classList.remove("black");
-                }
-                toShow.classList.remove("hide");
-                for (var i = toHide.length -1; i>=0; i--) {
-                    toHide[i].classList.add("hide");
-                }
+<head>
+    <meta charset="utf-8">
+    <title>MVP Gwénolé LE HENAFF</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript">
+        var whoIamBtn,
+            projectBtn,
+            gameBtn,
+            reseauxBtn,
+            whoIam,
+            project,
+            game,
+            reseaux,
+            rocketjs,
+            github_repos,
+            github_activeRepos,
+            github_followers,
+            github_downloads;
+
+        function show(pin, unPin, toShow, toHide) {
+            pin.classList.add("black");
+            for (var i = unPin.length - 1; i >= 0; i--) {
+                unPin[i].classList.remove("black");
             }
+            toShow.classList.remove("hide");
+            for (var i = toHide.length - 1; i >= 0; i--) {
+                toHide[i].classList.add("hide");
+            }
+        }
 
-            window.onload = function() {
-                whoIamBtn =     document.getElementById('whoIamBtn');
-                projectBtn =    document.getElementById('projetsBtn');
-                gameBtn =       document.getElementById('gameBtn');
-                reseauxBtn =    document.getElementById('reseauxBtn');
-                whoIam =        document.getElementById('whoIam');
-                project =       document.getElementById('projets');
-                game =          document.getElementById('game');
-                reseaux =       document.getElementById('reseaux');
-                rocketjs =      document.getElementById('rocketjs');
+        window.addEventListener("load", function() {
+            whoIamBtn = document.getElementById('whoIamBtn');
+            projectBtn = document.getElementById('projetsBtn');
+            gameBtn = document.getElementById('gameBtn');
+            reseauxBtn = document.getElementById('reseauxBtn');
+            whoIam = document.getElementById('whoIam');
+            project = document.getElementById('projets');
+            game = document.getElementById('game');
+            reseaux = document.getElementById('reseaux');
+            rocketjs = document.getElementById('rocketjs');
+            github_repos = document.getElementById('github-repos');
+            github_activeRepos = document.getElementById('github-activeRepos');
+            github_followers = document.getElementById('github-followers');
+            github_downloads = document.getElementById('github-downloads');
 
-                whoIamBtn.addEventListener("click",     function() { show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]); });
-                projectBtn.addEventListener("click",    function() { show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]); });
-                gameBtn.addEventListener("click",       function() { show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]); });
-                reseauxBtn.addEventListener("click",    function() { show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]); });
-                rocketjs.addEventListener("click",      function() { rocketjs.classList.add("hide"); RocketJS.currentGame = new RocketJS.Game(); });
-            };
-        </script>
-    </head>
-    <body class="no-space">
-        <header>
-            <div id="over">
-                <h1 class="no-space">Gwénolé LE HENAFF</h1>
-                <span class="subtitle">Portfolio</span>
+            whoIamBtn.addEventListener("click", function() {
+                show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]);
+            });
+            projectBtn.addEventListener("click", function() {
+                show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]);
+                ajax.Update();
+            });
+            gameBtn.addEventListener("click", function() {
+                show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]);
+            });
+            reseauxBtn.addEventListener("click", function() {
+                show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]);
+            });
+            rocketjs.addEventListener("click", function() {
+                rocketjs.classList.add("hide");
+            });
+        });
+    </script>
+    <script type="text/javascript" src="ajax.js"></script>
+    <script type="text/javascript" src="rocket.js"></script>
+</head>
+
+<body class="no-space">
+    <header>
+        <div id="over">
+            <h1 class="no-space">Gwénolé LE HENAFF</h1>
+            <span class="subtitle">Portfolio</span>
+        </div>
+        <nav>
+            <div id="empty"></div>
+            <div id="whoIamBtn" class="nav black"><i class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i><span>MOI</span></div>
+            <div id="projetsBtn" class="nav"><i class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i><span>PROJETS</span></div>
+            <div id="gameBtn" class="nav"><i class="fa fa-gamepad fa-3x" title="Games" aria-hidden="true"></i><span>JEUX</span></div>
+            <div id="reseauxBtn" class="nav"><i class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i><span>CONTACTS</span></div>
+        </nav>
+    </header>
+    <main>
+        <div id="whoIam">
+            <div>
+                <h2>BIO</h2> Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo. Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion
+                en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#.
             </div>
-            <nav>
-                <div id="empty"></div>
-                <div id="whoIamBtn" class="nav black"><i class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i><span>MOI</span></div>
-                <div id="projetsBtn" class="nav"><i class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i><span>PROJETS</span></div>
-                <div id="gameBtn" class="nav"><i class="fa fa-gamepad fa-3x" title="Games" aria-hidden="true"></i><span>JEUX</span></div>
-                <div id="reseauxBtn" class="nav"><i class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i><span>CONTACTS</span></div>
-            </nav>
-        </header>
-        <main>
-            <div id="whoIam">
-                <div>
-                    <h2>BIO</h2>
-                    Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo.
-                    Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#.
-                </div>
-                <div id="knowledge">
-                    <h2>CONNAISSANCES</h2>
-                    <a href="https://www.w3.org/html/" title="HTML"><img src="img/html.png" alt="HTML" /></a>
-                    <a href="https://www.w3.org/css/" title="CSS"><img src="img/css.png" alt="CSS" /></a>
-                    <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
-                    <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
-                    <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
-                    <a href="http://www.microsoft.com/net/" title="C#"><img src="img/csharp.png" alt="C#" /></a>
-                    <a href="http://www.monodevelop.com/" title="MonoDevelop"><img src="img/monodevelop.png" alt="MonoDevelop" /></a>
-                    <a href="https://www.xamarin.com/studio" title="Xamarin Studio"><img src="img/xamarin.png" alt="Xamarin Studio" /></a>
-                    <a href="https://unity3d.com/" title="Unity 3D"><img src="img/unity3d.png" alt="Unity3d" /></a>
-                    <a href="http://www.monogame.net/" title="MonoGame"><img src="img/monogame.png" alt="MonoGame" /></a>
-                </div>
+            <div id="knowledge">
+                <h2>CONNAISSANCES</h2>
+                <a href="https://www.w3.org/html/" title="HTML"><img src="img/html.png" alt="HTML" /></a>
+                <a href="https://www.w3.org/css/" title="CSS"><img src="img/css.png" alt="CSS" /></a>
+                <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
+                <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
+                <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
+                <a href="http://www.microsoft.com/net/" title="C#"><img src="img/csharp.png" alt="C#" /></a>
+                <a href="http://www.monodevelop.com/" title="MonoDevelop"><img src="img/monodevelop.png" alt="MonoDevelop" /></a>
+                <a href="https://www.xamarin.com/studio" title="Xamarin Studio"><img src="img/xamarin.png" alt="Xamarin Studio" /></a>
+                <a href="https://unity3d.com/" title="Unity 3D"><img src="img/unity3d.png" alt="Unity3d" /></a>
+                <a href="http://www.monogame.net/" title="MonoGame"><img src="img/monogame.png" alt="MonoGame" /></a>
             </div>
-            <div id="projets" class="hide">
-                <div><h2>PROJETS AFPA</h2>
-                    <ul>
-                        <li onclick="location.href='Projets/CV/index.html'">CV en HTML5/CSS3/JS</li>
-                        <li onclick="location.href='Projets/toDoList-Solo/index.html'">Liste de tâche en solo</li>
-                        <li onclick="location.href='Projets/toDoList-Binome/index.html'">Liste de tâche en binôme</li>
-                    </ul>
-                </div>
-                <div><h2>PROJETS PERSO</h2>
-                    <ul>
-                        <li onclick="location.href='http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1'">Modifications du jeu Kerbal Space Program</li>
-                        <li onclick="location.href='#'">Travaux sur le moteur graphique MonoGame</li>
-                    </ul>
-                </div>
-                <div><h2>Stats GitHub</h2>
-                  <ul>
-                    <li><span>Dépôts :</span><span id="github-repos"></span></li>
-                    <li><span>Abonnés :</span><span id="github-followers"></span></li>
-                    <li><span>Téléchargements :</span><span id="github-downloads"></span></li>
+        </div>
+        <div id="projets" class="hide">
+            <div>
+                <h2>PROJETS AFPA</h2>
+                <ul>
+                    <li onclick="location.href='Projets/CV/index.html'">CV en HTML5/CSS3/JS</li>
+                    <li onclick="location.href='Projets/toDoList-Solo/index.html'">Liste de tâche en solo</li>
+                    <li onclick="location.href='Projets/toDoList-Binome/index.html'">Liste de tâche en binôme</li>
+                </ul>
+            </div>
+            <div>
+                <h2>PROJETS PERSO</h2>
+                <ul>
+                    <li onclick="location.href='http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1'">Modifications du jeu Kerbal Space Program</li>
+                    <li onclick="location.href='#'">Travaux sur le moteur graphique MonoGame</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Stats GitHub</h2>
+                <ul>
+                    <li><span>Dépôts actif : </span><span id="github-activeRepos"></span></li>
+                    <li><span>Dépôts totaux : </span><span id="github-repos"></span></li>
+                    <li><span>Abonnés : </span><span id="github-followers"></span></li>
                     <!--<li><span>Langages :</span><span id="github-repos"></span></li>-->
-                  </ul>
-                </div>
-                <!--<div><h2>Stats SpaceDock</h2>
+                </ul>
+            </div>
+            <!--<div><h2>Stats SpaceDock</h2>
                   <ul>
                     <li><span>Modes :</span><span id="spacedock-repos"></span></li>
                     <li><span>Abonnés :</span><span id="spacedock-followers"></span></li>
                     <li><span>Téléchargements :</span id="spacedock-downloads"><span></span></li>
                   </ul>
                 </div>-->
-            </div>
-            <div id="game" class="hide">
-                <span id="rocketjs">-> RocketJS <-</span>
-            </div>
-            <div id="reseaux" class="hide">
-                <h2>CONTACTS</h2>
-                <a href="#"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
-                <a href="#"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
-                <a href="https://github.com/malahx"><i class="fa fa-github fa-2x" aria-hidden="true"></i> GitHub</a>
-                <a href="https://framagit.org/u/Malah"><i class="fa fa-gitlab fa-2x" aria-hidden="true"></i> FramaGit</a>
-            </div>
-        </main>
-    </body>
+        </div>
+        <div id="game" class="hide">
+            <span id="rocketjs">-> RocketJS <-</span>
+        </div>
+        <div id="reseaux" class="hide">
+            <h2>CONTACTS</h2>
+            <a href="#"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
+            <a href="#"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
+            <a href="https://github.com/malahx"><i class="fa fa-github fa-2x" aria-hidden="true"></i> GitHub</a>
+            <a href="https://framagit.org/u/Malah"><i class="fa fa-gitlab fa-2x" aria-hidden="true"></i> FramaGit</a>
+        </div>
+    </main>
+</body>
+
 </html>

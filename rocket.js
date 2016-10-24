@@ -104,6 +104,7 @@
             currentGame.burn = false;
         }
     };
+
     window.addEventListener("load", function() {
         rocketjs.addEventListener("click", function() {
             currentGame = new Game();
