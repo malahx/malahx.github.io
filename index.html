@@ -20,8 +20,11 @@
             rocketjs,
             github_repos,
             github_activeRepos,
-            github_followers,
-            github_downloads;
+            github_followers;
+            //spacedock_mods,
+            //spacedock_activeMods,
+            //spacedock_followers,
+            //spacedock_downloads;
 
         function show(pin, unPin, toShow, toHide) {
             pin.classList.add("black");
@@ -47,14 +50,16 @@
             github_repos = document.getElementById('github-repos');
             github_activeRepos = document.getElementById('github-activeRepos');
             github_followers = document.getElementById('github-followers');
-            github_downloads = document.getElementById('github-downloads');
+            //spacedock_mods = document.getElementById('github-repos');
+            //spacedock_activeMods = document.getElementById('github-activeRepos');
+            //spacedock_followers = document.getElementById('github-followers');
+            //spacedock_downloads = document.getElementById('github-downloads');
 
             whoIamBtn.addEventListener("click", function() {
                 show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]);
             });
             projectBtn.addEventListener("click", function() {
                 show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]);
-                ajax.Update();
             });
             gameBtn.addEventListener("click", function() {
                 show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]);
@@ -96,6 +101,7 @@
                 <a href="https://www.w3.org/html/" title="HTML"><img src="img/html.png" alt="HTML" /></a>
                 <a href="https://www.w3.org/css/" title="CSS"><img src="img/css.png" alt="CSS" /></a>
                 <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
+                <a href="https://www.php.net/" title="Php"><img src="img/php.png" alt="Php" /></a>
                 <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
                 <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
                 <a href="http://www.microsoft.com/net/" title="C#"><img src="img/csharp.png" alt="C#" /></a>
@@ -127,16 +133,15 @@
                     <li><span>Dépôts actif : </span><span id="github-activeRepos"></span></li>
                     <li><span>Dépôts totaux : </span><span id="github-repos"></span></li>
                     <li><span>Abonnés : </span><span id="github-followers"></span></li>
-                    <!--<li><span>Langages :</span><span id="github-repos"></span></li>-->
                 </ul>
             </div>
             <!--<div><h2>Stats SpaceDock</h2>
-                  <ul>
-                    <li><span>Modes :</span><span id="spacedock-repos"></span></li>
-                    <li><span>Abonnés :</span><span id="spacedock-followers"></span></li>
-                    <li><span>Téléchargements :</span id="spacedock-downloads"><span></span></li>
-                  </ul>
-                </div>-->
+              <ul>
+                <li><span>Modifications de jeux :</span><span id="spacedock-repos"></span></li>
+                <li><span>Abonnés totaux :</span><span id="spacedock-followers"></span></li>
+                <li><span>Téléchargements totaux :</span id="spacedock-downloads"><span></span></li>
+              </ul>
+          </div>-->
         </div>
         <div id="game" class="hide">
             <span id="rocketjs">-> RocketJS <-</span>
