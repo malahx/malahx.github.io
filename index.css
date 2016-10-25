@@ -29,6 +29,7 @@ header #over {
     z-index: 10;
     cursor: default;
     border-bottom: 2px solid white;
+    padding-bottom: 0.3em;
 }
 header #over h1 {
     float: left;
@@ -49,6 +50,7 @@ header nav {
     text-align: center;
     border-bottom: 2px solid white;
     padding-top: 0.3em;
+    padding-bottom: 0.3em;
 }
 header nav #empty {
     height: 3.7em;
