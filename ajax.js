@@ -2,6 +2,7 @@
 // This is free and unencumbered software released into the public domain.
 
 var ajax = {
+    dataStored: {},
     supportedAPI: function() {
         return {
             'github': ['https://api.github.com/users/malahx', [github_repos, 'public_repos'], [github_followers, 'followers']],
@@ -30,11 +31,13 @@ var ajax = {
                     for (var i = datas.length -1; i>0; i--) {
                         var data = datas[i];
                         if (data.length == 2) {
+                            ajax.dataStored[data[0].id] = parse[data[1]];
                             data[0].innerHTML = parse[data[1]];
                             continue;
                         }
                         switch (data[1]) {
                             case 'count':
+                                ajax.dataStored[data[0].id] = parse[data[2]].length;
                                 data[0].innerHTML = parse[data[2]].length;
                             break;
                             case 'foreach':
@@ -52,10 +55,12 @@ var ajax = {
                                         j += each[data[3]];
                                     }
                                 }
+                                ajax.dataStored[data[0].id] = j;
                                 data[0].innerHTML = j;
                             break;
                         }
                     }
+                    sessionStorage.setItem("dataStored",JSON.stringify(ajax.dataStored));
                 } else {
                     console.error(xhr.statusText);
                 }
@@ -70,6 +75,15 @@ var ajax = {
 }
 window.addEventListener("load", function() {
     projectBtn.addEventListener("click", function() {
+        var datas = sessionStorage.getItem("dataStored");
+        if (datas != null) {
+            ajax.dataStored = JSON.parse(datas);
+            var keys = Object.keys(ajax.dataStored);
+            for (var key of keys) {
+                document.getElementById(key).innerHTML = ajax.dataStored[key];
+            }
+            return;
+        }
         ajax.Update();
     });
 });
