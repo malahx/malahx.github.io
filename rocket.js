@@ -2,14 +2,19 @@
 // Copyright 2016 Malah
 // This is free and unencumbered software released into the public domain.
 
-(function() {
-    var currentGame = null;
+// Variable de dom
+var rocketjs;
 
+// Fonction autoappelante permettant de conserver des variables et objets privés
+(function() {
+    // Partie en cours
+    var currentGame = null;
+    // Objet définissant un vecteur
     var vector2 = function(x, y) {
         this.x = x;
         this.y = y;
     };
-
+    // Objet définissant les dimensions d'un dom
     var Dimenions = function(dom, factor) {
         this.dom = dom;
         this.factor = factor;
@@ -18,7 +23,7 @@
         this.y = this.vect.y;
         this.dom.setAttribute("width", this.vect.x + "px;");
     };
-
+    // Objet définissant la position d'un dom
     var Positions = function(dim) {
         this.dim = dim;
         this.vect = new vector2((window.innerWidth - this.dim.x) / 2, window.innerHeight - this.dim.y);
@@ -53,8 +58,9 @@
         this.setWidth(this.vect.x);
         this.setHeight(this.vect.y);
     };
-
+    // Objet de création d'un partie
     var Game = function() {
+        // Génération du dom de la fusée
         this.rocket = document.createElement("img");
         this.fire = document.createElement("img");
         this.rocket.src = "img/fusee.png";
@@ -64,11 +70,15 @@
         this.fire.setAttribute("id", "fire");
         this.fire.setAttribute("position", "fixed");
         game.appendChild(this.rocket);
+
+        // Création des données de la fusée
         this.rocketDim = new Dimenions(this.rocket, 0.5);
         this.position = new Positions(this.rocketDim);
         this.speed = 0;
         this.accelerate = 0;
         this.burn = false;
+
+        // Méthode d'actualisation d'une partie
         this.Update = function() {
             if (currentGame.burn) {
                 currentGame.accelerate -= 0.5;
@@ -86,11 +96,14 @@
                 currentGame.position.height(currentGame.speed);
             }
         };
+
+        // Ajout des évènements
         document.addEventListener("keydown", controlKeyPressDown);
         document.addEventListener("keyup", controlKeyPressUp);
         setInterval(this.Update, 50);
     };
 
+    // Evènement de pression d'une touche
     var controlKeyPressDown = function(evnt) {
         var keyName = evnt.keyCode;
         if (keyName == 38) {
@@ -98,6 +111,7 @@
         }
     };
 
+    // Evènement de relache d'une touche
     var controlKeyPressUp = function(evnt) {
         var keyName = evnt.keyCode;
         if (keyName == 38) {
@@ -105,8 +119,11 @@
         }
     };
 
+    // Initialisation des variables globales et des évenements
     window.addEventListener("load", function() {
+        rocketjs = document.getElementById('rocketjs');
         rocketjs.addEventListener("click", function() {
+            rocketjs.classList.add("hide");
             currentGame = new Game();
         });
     });

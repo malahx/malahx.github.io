@@ -2,7 +2,11 @@
 // This is free and unencumbered software released into the public domain.
 
 var ajax = {
+
+    // Données stocker pour une sauvegarde de session.
     dataStored: {},
+
+    // Référenes de toutes les API supportées
     supportedAPI: function() {
         return {
             'github': ['https://api.github.com/users/malahx', [github_repos, 'public_repos'], [github_followers, 'followers']],
@@ -10,6 +14,8 @@ var ajax = {
         };
         //'spacedock': ['https://spacedock.info/api/user/malah', [spacedock_mods, 'count', 'mods'], [spacedock_followers, 'foreach', 'mods', 'followers'], [spacedock_downloads, 'foreach', 'mods', 'downloads']]
     },
+
+    // Connection aux différents API supportés
     Update: function() {
         document.body.style = "cursor: wait;"
         apis = ajax.supportedAPI();
@@ -18,6 +24,8 @@ var ajax = {
             ajax.Connect(api, apis[api][0]);
         }
     },
+
+    // Connection et traitement des données en fonction de l'API
     Connect: function(api, url) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
@@ -28,18 +36,26 @@ var ajax = {
                     var parse = JSON.parse(xhr.responseText);
                     var apis = ajax.supportedAPI();
                     var datas = apis[api];
+
+                    // Traitement de la mise à jour des élements du dom
                     for (var i = datas.length -1; i>0; i--) {
                         var data = datas[i];
+
+                        // Traitement des JSON simple
                         if (data.length == 2) {
                             ajax.dataStored[data[0].id] = parse[data[1]];
                             data[0].innerHTML = parse[data[1]];
                             continue;
                         }
+
+                        // Traitement des JSON complexe
                         switch (data[1]) {
+                            // Comptage du nombre d'élément
                             case 'count':
                                 ajax.dataStored[data[0].id] = parse[data[2]].length;
                                 data[0].innerHTML = parse[data[2]].length;
                             break;
+                            // Boucle pour test de date ou comptage de JSON
                             case 'foreach':
                                 var j = 0;
                                 var array = (data[2] == '' ? parse : parse[data[2]]);
@@ -60,6 +76,7 @@ var ajax = {
                             break;
                         }
                     }
+                    // Sauvegarde de la session pour un rechargement ultérieur rapide
                     sessionStorage.setItem("dataStored",JSON.stringify(ajax.dataStored));
                 } else {
                     console.error(xhr.statusText);
@@ -73,8 +90,10 @@ var ajax = {
         xhr.send(null);
     }
 }
+// Initialisation des variables globales et des évenements
 window.addEventListener("load", function() {
     projectBtn.addEventListener("click", function() {
+        // Récupération des données de session
         var datas = sessionStorage.getItem("dataStored");
         if (datas != null) {
             ajax.dataStored = JSON.parse(datas);
@@ -84,6 +103,7 @@ window.addEventListener("load", function() {
             }
             return;
         }
+        // Lancement des divers connexion et mise à jour du dom
         ajax.Update();
     });
 });

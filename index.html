@@ -9,6 +9,7 @@
     <link rel="icon" type="image/ico" href="favicon.ico">
     <link rel="stylesheet" href="index.css">
     <script type="text/javascript">
+        // Définition des variables de dom
         var whoIamBtn,
             projectBtn,
             gameBtn,
@@ -17,7 +18,6 @@
             project,
             game,
             reseaux,
-            rocketjs,
             github_repos,
             github_activeRepos,
             github_followers;
@@ -26,6 +26,7 @@
             //spacedock_followers,
             //spacedock_downloads;
 
+        // Fonction permettant d'afficher ou de cacher les différentes pages, ainsi que de conserver un bouton en noir
         function show(pin, unPin, toShow, toHide) {
             pin.classList.add("black");
             for (var i = unPin.length - 1; i >= 0; i--) {
@@ -37,6 +38,7 @@
             }
         }
 
+        // Initialisation des variables globales et des évenements
         window.addEventListener("load", function() {
             whoIamBtn = document.getElementById('whoIamBtn');
             projectBtn = document.getElementById('projetsBtn');
@@ -46,7 +48,6 @@
             project = document.getElementById('projets');
             game = document.getElementById('game');
             reseaux = document.getElementById('reseaux');
-            rocketjs = document.getElementById('rocketjs');
             github_repos = document.getElementById('github-repos');
             github_activeRepos = document.getElementById('github-activeRepos');
             github_followers = document.getElementById('github-followers');
@@ -66,9 +67,6 @@
             });
             reseauxBtn.addEventListener("click", function() {
                 show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]);
-            });
-            rocketjs.addEventListener("click", function() {
-                rocketjs.classList.add("hide");
             });
         });
     </script>
@@ -118,6 +116,7 @@
                     <li onclick="location.href='Projets/CV/index.html'">CV en HTML5/CSS3/JS</li>
                     <li onclick="location.href='Projets/toDoList-Solo/index.html'">Liste de tâche en solo</li>
                     <li onclick="location.href='Projets/toDoList-Binome/index.html'">Liste de tâche en binôme</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/toDoList-Binome-API-REST'">Liste de tâche en binôme avec une API REST</li>
                 </ul>
             </div>
             <div>
