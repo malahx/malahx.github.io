@@ -13,9 +13,16 @@ var rocketjs;
     var vector2 = function(x, y) {
         this.x = x;
         this.y = y;
+        this.Add = function(vect, max = null) {
+            this.x += vect.x;
+            this.y += vect.y;
+            if (max != null) {
+                //trigo
+            }
+        };
     };
     // Objet définissant les dimensions d'un dom
-    var Dimenions = function(dom, factor) {
+    var Dimensions = function(dom, factor) {
         this.dom = dom;
         this.factor = factor;
         this.vect = new vector2(this.dom.width * factor, this.dom.height * factor);
@@ -58,6 +65,35 @@ var rocketjs;
         this.setWidth(this.vect.x);
         this.setHeight(this.vect.y);
     };
+    var Rotation = function() {
+        this.angle = 0;
+    }
+    var Movement = function(rot) {
+        this.rot = rot;
+        this.burn = false;
+        this.speed = new vector2(0, 0);
+        this.gravity = new vector2(0, 0.1);
+        this.maxAcceleration = new vector2(0, 0.5);
+        this.curAcceleration = new vector2(0, 0);
+        this.thrust = new vector2(0, 0.5);
+        this.GravityApply = function() {
+            this.curAcceleration.Add(-this.gravity);
+        };
+        this.BurnApply = function() {
+            if (!this.burn) {
+                return;
+            }
+            this.curAcceleration.Add(this.thrust, this.maxAcceleration);
+        };
+        this.Speed = function() {
+            this.speed.Add(this.curAcceleration);
+        };
+        this.Apply = function() {
+            this.GravityApply();
+            this.BurnApply();
+            this.Speed();
+        }
+    };
     // Objet de création d'un partie
     var Game = function() {
         // Génération du dom de la fusée
@@ -72,15 +108,17 @@ var rocketjs;
         game.appendChild(this.rocket);
 
         // Création des données de la fusée
-        this.rocketDim = new Dimenions(this.rocket, 0.5);
+        this.rocketDim = new Dimensions(this.rocket, 0.5);
         this.position = new Positions(this.rocketDim);
-        this.speed = 0;
+        this.movement = new Movement();
+        /*this.speed = 0;
         this.accelerate = 0;
-        this.burn = false;
+        this.burn = false;*/
 
         // Méthode d'actualisation d'une partie
         this.Update = function() {
-            if (currentGame.burn) {
+            currentGame.movement.Apply();
+            /*if (currentGame.burn) {
                 currentGame.accelerate -= 0.5;
             }
             currentGame.accelerate += 0.1;
@@ -94,7 +132,7 @@ var rocketjs;
                 currentGame.speed = 0;
             } else {
                 currentGame.position.height(currentGame.speed);
-            }
+            }*/
         };
 
         // Ajout des évènements

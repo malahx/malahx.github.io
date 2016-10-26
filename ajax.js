@@ -9,6 +9,7 @@ var ajax = {
     // Référenes de toutes les API supportées
     supportedAPI: function() {
         return {
+            // NomDeLAPI: ['Url de l'API", [ElementDom, 'Clé JSON'], [ElementDom, 'Fonction(foreach|count)', 'Clé JSON global non obligatoire', 'Clé JSON', 'Fonction(date)']];
             'github': ['https://api.github.com/users/malahx', [github_repos, 'public_repos'], [github_followers, 'followers']],
             'github-repos': ['https://api.github.com/users/malahx/repos', [github_activeRepos, 'foreach', '', 'updated_at', 'date']]
         };
