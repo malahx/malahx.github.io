@@ -20,6 +20,13 @@ var rocketjs;
                 //trigo
             }
         };
+        this.Sub = function(vect, max = null) {
+            this.x -= vect.x;
+            this.y -= vect.y;
+            if (max != null) {
+                //trigo
+            }
+        };
     };
     // Objet définissant les dimensions d'un dom
     var Dimensions = function(dom, factor) {
@@ -34,20 +41,12 @@ var rocketjs;
     var Positions = function(dim) {
         this.dim = dim;
         this.vect = new vector2((window.innerWidth - this.dim.x) / 2, window.innerHeight - this.dim.y);
-        this.width = function(speed) {
-            this.vect.x += speed;
+        this.Add = function(vect) {
+            this.vect.Add(vect)
+            this.Set();
+        };
+        this.Set = function() {
             this.dim.dom.style = "left: " + this.vect.x + "px;";
-        };
-        this.height = function(speed) {
-            this.vect.y += speed;
-            this.dim.dom.style = "top: " + this.vect.y + "px;";
-        };
-        this.setWidth = function(posX) {
-            this.vect.x = posX;
-            this.dim.dom.style = "left: " + this.vect.x + "px;";
-        };
-        this.setHeight = function(posY) {
-            this.vect.y = posY;
             this.dim.dom.style = "top: " + this.vect.y + "px;";
         };
         this.up = function() {
@@ -62,14 +61,14 @@ var rocketjs;
         this.right = function() {
             return this.vect.x + this.dim.x;
         }
-        this.setWidth(this.vect.x);
-        this.setHeight(this.vect.y);
+        this.Set();
     };
     var Rotation = function() {
         this.angle = 0;
     }
-    var Movement = function(rot) {
-        this.rot = rot;
+    var Movement = function(pos) {
+        this.pos = pos;
+        this.rot = new Rotation();
         this.burn = false;
         this.speed = new vector2(0, 0);
         this.gravity = new vector2(0, 0.1);
@@ -77,13 +76,13 @@ var rocketjs;
         this.curAcceleration = new vector2(0, 0);
         this.thrust = new vector2(0, 0.5);
         this.GravityApply = function() {
-            this.curAcceleration.Add(-this.gravity);
+            this.curAcceleration.Add(this.gravity);
         };
         this.BurnApply = function() {
             if (!this.burn) {
                 return;
             }
-            this.curAcceleration.Add(this.thrust, this.maxAcceleration);
+            this.curAcceleration.Sub(this.thrust, this.maxAcceleration);
         };
         this.Speed = function() {
             this.speed.Add(this.curAcceleration);
@@ -92,7 +91,8 @@ var rocketjs;
             this.GravityApply();
             this.BurnApply();
             this.Speed();
-        }
+            pos.Add(this.speed);
+        };
     };
     // Objet de création d'un partie
     var Game = function() {
@@ -110,7 +110,7 @@ var rocketjs;
         // Création des données de la fusée
         this.rocketDim = new Dimensions(this.rocket, 0.5);
         this.position = new Positions(this.rocketDim);
-        this.movement = new Movement();
+        this.movement = new Movement(this.position);
         /*this.speed = 0;
         this.accelerate = 0;
         this.burn = false;*/
@@ -145,7 +145,7 @@ var rocketjs;
     var controlKeyPressDown = function(evnt) {
         var keyName = evnt.keyCode;
         if (keyName == 38) {
-            currentGame.burn = true;
+            currentGame.movement.burn = true;
         }
     };
 
@@ -153,7 +153,7 @@ var rocketjs;
     var controlKeyPressUp = function(evnt) {
         var keyName = evnt.keyCode;
         if (keyName == 38) {
-            currentGame.burn = false;
+            currentGame.movement.burn = false;
         }
     };
 
