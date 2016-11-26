@@ -30,11 +30,15 @@
         function show(pin, unPin, toShow, toHide) {
             pin.classList.add("black");
             for (var i = unPin.length - 1; i >= 0; i--) {
-                unPin[i].classList.remove("black");
+				if (unPin[i]) {
+					unPin[i].classList.remove("black");
+				}
             }
             toShow.classList.remove("hide");
             for (var i = toHide.length - 1; i >= 0; i--) {
-                toHide[i].classList.add("hide");
+				if (toHide[i]) {
+					toHide[i].classList.add("hide");
+				}
             }
         }
 
@@ -42,7 +46,7 @@
         window.addEventListener("load", function() {
             whoIamBtn = document.getElementById('whoIamBtn');
             projectBtn = document.getElementById('projetsBtn');
-            gameBtn = document.getElementById('gameBtn');
+            //gameBtn = document.getElementById('gameBtn');
             reseauxBtn = document.getElementById('reseauxBtn');
             whoIam = document.getElementById('whoIam');
             project = document.getElementById('projets');
@@ -62,9 +66,9 @@
             projectBtn.addEventListener("click", function() {
                 show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]);
             });
-            gameBtn.addEventListener("click", function() {
+            /*gameBtn.addEventListener("click", function() {
                 show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]);
-            });
+            });*/
             reseauxBtn.addEventListener("click", function() {
                 show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]);
             });
@@ -84,7 +88,7 @@
             <div id="empty"></div>
             <div id="whoIamBtn" class="nav black"><i class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i><span>MOI</span></div>
             <div id="projetsBtn" class="nav"><i class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i><span>PROJETS</span></div>
-            <div id="gameBtn" class="nav"><i class="fa fa-gamepad fa-3x" title="Games" aria-hidden="true"></i><span>JEUX</span></div>
+            <!--<div id="gameBtn" class="nav"><i class="fa fa-gamepad fa-3x" title="Games" aria-hidden="true"></i><span>JEUX</span></div>-->
             <div id="reseauxBtn" class="nav"><i class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i><span>CONTACTS</span></div>
         </nav>
     </header>
@@ -101,6 +105,7 @@
                 <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
                 <a href="http://getbootstrap.com/" title="Bootstrap"><img src="img/bootstrap.png" alt="Bootstrap" /></a>
                 <a href="https://www.php.net/" title="Php"><img src="img/php.png" alt="Php" /></a>
+                <a href="https://symfony.com/" title="Symfony"><img src="img/symfony.png" alt="Symfony" /></a>
                 <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
                 <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
                 <a href="http://www.microsoft.com/net/" title="C#"><img src="img/csharp.png" alt="C#" /></a>
@@ -120,13 +125,14 @@
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/toDoList-Binome-API-REST'">(JS) Liste de tâche en binôme avec une API REST</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/TrackList-PHP-Session'">(PHP) Liste de musique avec sauvegarde en Session</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/TrackList-PHP-MySQL'">(PHP) Liste de musique avec sauvegarde en MySQL et Login en Session</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Tautof-Symfony'">(PHP) Site de petites annonces de voitures avec Symfony</li>
                 </ul>
             </div>
             <div>
                 <h2>PROJETS PERSO</h2>
                 <ul>
-                    <li onclick="location.href='http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1'">Modifications du jeu Kerbal Space Program</li>
-                    <li onclick="location.href='#'">Travaux sur le moteur graphique MonoGame</li>
+                    <li onclick="location.href='http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1'">(C#) Modifications du jeu Kerbal Space Program</li>
+                    <li onclick="location.href='#'">(C#) Travaux sur le moteur graphique MonoGame</li>
                 </ul>
             </div>
             <div>
@@ -145,13 +151,13 @@
               </ul>
           </div>-->
         </div>
-        <div id="game" class="hide">
+        <!--<div id="game" class="hide">
             <span id="rocketjs">-> RocketJS <-</span>
-        </div>
+        </div>-->
         <div id="reseaux" class="hide">
             <h2>CONTACTS</h2>
-            <a href="#"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
-            <a href="#"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
+            <a href="https://www.linkedin.com/in/gw%C3%A9nol%C3%A9-le-henaff-5657a8133?trk=nav_responsive_tab_profile_pic"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
+            <a href="http://www.viadeo.com/p/002ykjgzetbb3ov"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
             <a href="https://github.com/malahx"><i class="fa fa-github fa-2x" aria-hidden="true"></i> GitHub</a>
             <a href="https://framagit.org/u/Malah"><i class="fa fa-gitlab fa-2x" aria-hidden="true"></i> FramaGit</a>
         </div>
