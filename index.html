@@ -21,10 +21,6 @@
             github_repos,
             github_activeRepos,
             github_followers;
-            //spacedock_mods,
-            //spacedock_activeMods,
-            //spacedock_followers,
-            //spacedock_downloads;
 
         // Fonction permettant d'afficher ou de cacher les différentes pages, ainsi que de conserver un bouton en noir
         function show(pin, unPin, toShow, toHide) {
@@ -46,7 +42,6 @@
         window.addEventListener("load", function() {
             whoIamBtn = document.getElementById('whoIamBtn');
             projectBtn = document.getElementById('projetsBtn');
-            //gameBtn = document.getElementById('gameBtn');
             reseauxBtn = document.getElementById('reseauxBtn');
             whoIam = document.getElementById('whoIam');
             project = document.getElementById('projets');
@@ -55,10 +50,6 @@
             github_repos = document.getElementById('github-repos');
             github_activeRepos = document.getElementById('github-activeRepos');
             github_followers = document.getElementById('github-followers');
-            //spacedock_mods = document.getElementById('github-repos');
-            //spacedock_activeMods = document.getElementById('github-activeRepos');
-            //spacedock_followers = document.getElementById('github-followers');
-            //spacedock_downloads = document.getElementById('github-downloads');
 
             whoIamBtn.addEventListener("click", function() {
                 show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]);
@@ -66,9 +57,6 @@
             projectBtn.addEventListener("click", function() {
                 show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]);
             });
-            /*gameBtn.addEventListener("click", function() {
-                show(this, [projectBtn, whoIamBtn, reseauxBtn], game, [project, whoIam, reseaux]);
-            });*/
             reseauxBtn.addEventListener("click", function() {
                 show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]);
             });
@@ -88,7 +76,6 @@
             <div id="empty"></div>
             <div id="whoIamBtn" class="nav black"><i class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i><span>MOI</span></div>
             <div id="projetsBtn" class="nav"><i class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i><span>PROJETS</span></div>
-            <!--<div id="gameBtn" class="nav"><i class="fa fa-gamepad fa-3x" title="Games" aria-hidden="true"></i><span>JEUX</span></div>-->
             <div id="reseauxBtn" class="nav"><i class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i><span>CONTACTS</span></div>
         </nav>
     </header>
@@ -104,15 +91,11 @@
                 <div>
                     <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
                     <a href="https://angularjs.org/" title="AngularJS"><img src="img/angularjs.png" alt="AngularJS" /></a>
-                </div>
+                </div>            
                 <div>
-                    <a href="https://www.php.net/" title="Php"><img src="img/php.png" alt="Php" /></a>
-                    <a href="https://symfony.com/" title="Symfony"><img src="img/symfony.png" alt="Symfony" /></a>
-                    <a href="https://www.slimframework.com/" title="Slim"><img src="img/slim.png" alt="Slim" /></a>
-                </div>                
-                <a href="https://www.mysql.com/" title="MySQL"><img src="img/mysql.png" alt="MySQL" /></a>
-                <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
-                <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
+                    <a href="https://www.mysql.com/" title="MySQL"><img src="img/mysql.png" alt="MySQL" /></a>
+                    <a href="https://sqlite.org/" title="SQLite"><img src="img/sqlite.png" alt="SQLite" /></a>
+                </div>
                 <div>
                     <a href="https://www.w3.org/css/" title="CSS"><img src="img/css.png" alt="CSS" /></a>
                     <a href="http://getbootstrap.com/" title="Bootstrap"><img src="img/bootstrap.png" alt="Bootstrap" /></a>
@@ -120,7 +103,15 @@
                     <a href="https://fonts.google.com/" title="Google Font"><img src="img/googlefont.png" alt="Google Font" /></a>
                 </div>
                 <div>
+                    <a href="https://www.php.net/" title="Php"><img src="img/php.png" alt="Php" /></a>
+                    <a href="https://symfony.com/" title="Symfony"><img src="img/symfony.png" alt="Symfony" /></a>
+                    <a href="https://www.slimframework.com/" title="Slim"><img src="img/slim.png" alt="Slim" /></a>
+                    <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
+                    <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
+                </div>    
+                <div>
                     <a href="https://www.java.com/fr/" title="Java"><img src="img/java.png" alt="Java" /></a>
+                    <a href="https://eclipse.org/" title="Eclipse"><img src="img/eclipse.png" alt="Eclipse" /></a>
                     <a href="https://netbeans.org/" title="NetBeans IDE"><img src="img/netbeans.png" alt="NetBeans IDE" /></a>
                     <a href="http://www.microsoft.com/net/" title="C#"><img src="img/csharp.png" alt="C#" /></a>
                     <a href="http://www.monodevelop.com/" title="MonoDevelop"><img src="img/monodevelop.png" alt="MonoDevelop" /></a>
@@ -164,17 +155,7 @@
                     <li onclick="location.href='https://github.com/malahx?tab=followers'"><span>Abonnés : </span><span id="github-followers"></span></li>
                 </ul>
             </div>
-            <!--<div><h2>Stats SpaceDock</h2>
-              <ul>
-                <li><span>Modifications de jeux :</span><span id="spacedock-repos"></span></li>
-                <li><span>Abonnés totaux :</span><span id="spacedock-followers"></span></li>
-                <li><span>Téléchargements totaux :</span id="spacedock-downloads"><span></span></li>
-              </ul>
-          </div>-->
         </div>
-        <!--<div id="game" class="hide">
-            <span id="rocketjs">-> RocketJS <-</span>
-        </div>-->
         <div id="reseaux" class="hide">
             <h2>CONTACTS</h2>
             <a href="https://www.linkedin.com/in/gw%C3%A9nol%C3%A9-le-henaff-5657a8133?trk=nav_responsive_tab_profile_pic"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
