@@ -12,11 +12,9 @@
         // Définition des variables de dom
         var whoIamBtn,
             projectBtn,
-            gameBtn,
             reseauxBtn,
             whoIam,
             project,
-            game,
             reseaux,
             github_repos,
             github_activeRepos,
@@ -45,20 +43,19 @@
             reseauxBtn = document.getElementById('reseauxBtn');
             whoIam = document.getElementById('whoIam');
             project = document.getElementById('projets');
-            game = document.getElementById('game');
             reseaux = document.getElementById('reseaux');
             github_repos = document.getElementById('github-repos');
             github_activeRepos = document.getElementById('github-activeRepos');
             github_followers = document.getElementById('github-followers');
 
             whoIamBtn.addEventListener("click", function() {
-                show(this, [projectBtn, gameBtn, reseauxBtn], whoIam, [project, game, reseaux]);
+                show(this, [projectBtn, reseauxBtn], whoIam, [project, reseaux]);
             });
             projectBtn.addEventListener("click", function() {
-                show(this, [whoIamBtn, gameBtn, reseauxBtn], project, [whoIam, game, reseaux]);
+                show(this, [whoIamBtn, reseauxBtn], project, [whoIam, reseaux]);
             });
             reseauxBtn.addEventListener("click", function() {
-                show(this, [projectBtn, gameBtn, whoIamBtn], reseaux, [project, game, whoIam]);
+                show(this, [projectBtn, whoIamBtn], reseaux, [project, whoIam]);
             });
         });
     </script>
@@ -82,8 +79,7 @@
     <main>
         <div id="whoIam">
             <div>
-                <h2>BIO</h2> Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo. Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion
-                en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#.
+                <h2>BIO</h2> Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo. Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#. Depuis quelques mois, je suis en formation de développeur logiciel ce qui m'a permis d'élargir mes connaissances dans les langages du web, dans les modèles de conception comme le modèle MVC ou MVVM et dans les designs patterns tel que le Singleton, l'Observer ou l'Adapter.
             </div>
             <div id="knowledge">
                 <h2>CONNAISSANCES</h2>
@@ -130,14 +126,17 @@
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Binome-API-REST'">(JS) Liste de tâche en binôme avec une API REST</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/TrackList-PHP-Session'">(PHP) Liste de musique avec sauvegarde en Session</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/TrackList-PHP-MySQL'">(PHP) Liste de musique avec sauvegarde en MySQL et Login en Session</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/Tautof-Symfony'">(PHP) Site de petites annonces de voitures avec Symfony</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK/tree/symfony'">(PHP) Site d'une médiathèque avec Symfony</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/Tautof-Symfony'">(PHP/Symfony) Site de petites annonces de voitures</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK/tree/symfony'">(PHP/Symfony) Site d'une médiathèque</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK'">(PHP/JS) Site d'une médiathèque avec AngularJS & Slim/Doctrine</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/AngularJS'">(JS) Exposé sur AngularJS</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/AngularJS'">(JS/AngularJS) Exposé et présentation de la technologie</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/CMS/Prestashop'">(CMS/Prestashop) Site e-commence avec un module de Dicton</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/BDD'">(MySQL) Développement de procédures stockées et de fonctions sur MySQL</li>
                     <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/MasterCLIMind'">(Java) Développement du jeu MasterMind en console avec gestion de test unitaire</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/ExoFormation'">(Java) Gestionnaire de formation et de stagiaire</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/ExoFormation'">(Java/Swing) Gestionnaire de formation et de stagiaire</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Android/MoneyConverter'">(Android) Convertisseur de monnaies</li>
+                    <li onclick="location.href='https://github.com/Valannos/ToListen-Android'">(Android) Gestionnaire de médias fait en binome</li>
+                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Android/ToListenServer'">(C#/NancyFx) Serveur API REST pour un gestionnaire de médias</li>
                 </ul>
             </div>
             <div>
