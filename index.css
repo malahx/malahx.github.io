@@ -100,6 +100,7 @@ main #knowledge a {
 }
 main #knowledge a:hover {
     filter: grayscale(0);
+    text-decoration: none;
 }
 main #projets ul {
     padding: 0;
