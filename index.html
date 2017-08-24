@@ -1,173 +1,351 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                MVP Gwénolé LE HENAFF
+            </title>
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+                    <link href="favicon.ico" rel="icon" type="image/ico">
+                        <link href="index.css" rel="stylesheet">
+                            <script type="text/javascript">
+                                // Définition des variables de dom
+                                var whoIamBtn,
+                                    projectBtn,
+                                    reseauxBtn,
+                                    whoIam,
+                                    project,
+                                    reseaux,
+                                    github_repos,
+                                    github_activeRepos,
+                                    github_followers;
 
-<head>
-    <meta charset="utf-8">
-    <title>MVP Gwénolé LE HENAFF</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="icon" type="image/ico" href="favicon.ico">
-    <link rel="stylesheet" href="index.css">
-    <script type="text/javascript">
-        // Définition des variables de dom
-        var whoIamBtn,
-            projectBtn,
-            reseauxBtn,
-            whoIam,
-            project,
-            reseaux,
-            github_repos,
-            github_activeRepos,
-            github_followers;
+                                // Fonction permettant d'afficher ou de cacher les différentes pages, ainsi que de conserver un bouton en noir
+                                function show(pin, unPin, toShow, toHide) {
+                                    pin.classList.add("black");
+                                    for (var i = unPin.length - 1; i >= 0; i--) {
+                                        if (unPin[i]) {
+                                            unPin[i].classList.remove("black");
+                                        }
+                                    }
+                                    toShow.classList.remove("hide");
+                                    for (var i = toHide.length - 1; i >= 0; i--) {
+                                        if (toHide[i]) {
+                                            toHide[i].classList.add("hide");
+                                        }
+                                    }
+                                }
 
-        // Fonction permettant d'afficher ou de cacher les différentes pages, ainsi que de conserver un bouton en noir
-        function show(pin, unPin, toShow, toHide) {
-            pin.classList.add("black");
-            for (var i = unPin.length - 1; i >= 0; i--) {
-				if (unPin[i]) {
-					unPin[i].classList.remove("black");
-				}
-            }
-            toShow.classList.remove("hide");
-            for (var i = toHide.length - 1; i >= 0; i--) {
-				if (toHide[i]) {
-					toHide[i].classList.add("hide");
-				}
-            }
-        }
+                                // Initialisation des variables globales et des évenements
+                                window.addEventListener("load", function() {
+                                    whoIamBtn = document.getElementById('whoIamBtn');
+                                    projectBtn = document.getElementById('projetsBtn');
+                                    reseauxBtn = document.getElementById('reseauxBtn');
+                                    whoIam = document.getElementById('whoIam');
+                                    project = document.getElementById('projets');
+                                    reseaux = document.getElementById('reseaux');
+                                    github_repos = document.getElementById('github-repos');
+                                    github_activeRepos = document.getElementById('github-activeRepos');
+                                    github_followers = document.getElementById('github-followers');
 
-        // Initialisation des variables globales et des évenements
-        window.addEventListener("load", function() {
-            whoIamBtn = document.getElementById('whoIamBtn');
-            projectBtn = document.getElementById('projetsBtn');
-            reseauxBtn = document.getElementById('reseauxBtn');
-            whoIam = document.getElementById('whoIam');
-            project = document.getElementById('projets');
-            reseaux = document.getElementById('reseaux');
-            github_repos = document.getElementById('github-repos');
-            github_activeRepos = document.getElementById('github-activeRepos');
-            github_followers = document.getElementById('github-followers');
-
-            whoIamBtn.addEventListener("click", function() {
-                show(this, [projectBtn, reseauxBtn], whoIam, [project, reseaux]);
-            });
-            projectBtn.addEventListener("click", function() {
-                show(this, [whoIamBtn, reseauxBtn], project, [whoIam, reseaux]);
-            });
-            reseauxBtn.addEventListener("click", function() {
-                show(this, [projectBtn, whoIamBtn], reseaux, [project, whoIam]);
-            });
-        });
-    </script>
-    <script type="text/javascript" src="ajax.js"></script>
-</head>
-
-<body class="no-space">
-    <header>
-        <div id="over">
-            <h1 class="no-space">Gwénolé LE HENAFF</h1>
-            <span class="subtitle">Portfolio</span>
-        </div>
-        <nav>
-            <div id="empty"></div>
-            <div id="whoIamBtn" class="nav black"><i class="fa fa-user fa-3x" title="Bio" aria-hidden="true"></i><span>MOI</span></div>
-            <div id="projetsBtn" class="nav"><i class="fa fa-briefcase fa-3x" title="Projets" aria-hidden="true"></i><span>PROJETS</span></div>
-            <div id="reseauxBtn" class="nav"><i class="fa fa-comment-o fa-3x" title="Contacts / Réseaux" aria-hidden="true"></i><span>CONTACTS</span></div>
-        </nav>
-    </header>
-    <main>
-        <div id="whoIam">
-            <div>
-                <h2>BIO</h2> Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo. Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en BASH. Ces dernières années, j'ai surtout développé des modifications de jeu sous Unity3D en C#. Dernièrement, j'ai effectué une formation de développeur logiciel ce qui m'a permis d'élargir mes connaissances dans les langages du web, dans les modèles de conception comme le modèle MVC ou MVVM et dans les designs patterns tel que le Singleton, l'Observer ou l'Adapter.
+                                    whoIamBtn.addEventListener("click", function() {
+                                        show(this, [projectBtn, reseauxBtn], whoIam, [project, reseaux]);
+                                    });
+                                    projectBtn.addEventListener("click", function() {
+                                        show(this, [whoIamBtn, reseauxBtn], project, [whoIam, reseaux]);
+                                    });
+                                    reseauxBtn.addEventListener("click", function() {
+                                        show(this, [projectBtn, whoIamBtn], reseaux, [project, whoIam]);
+                                    });
+                                });
+                            </script>
+                            <script src="ajax.js" type="text/javascript">
+                            </script>
+                        </link>
+                    </link>
+                </link>
+            </link>
+        </meta>
+    </head>
+    <body class="no-space">
+        <header>
+            <div id="over">
+                <h1 class="no-space">
+                    Gwénolé LE HENAFF
+                </h1>
+                <span class="subtitle">
+                    Portfolio
+                </span>
             </div>
-            <div id="knowledge">
-                <h2>CONNAISSANCES</h2>
-                <a href="https://www.w3.org/html/" title="HTML"><img src="img/html.png" alt="HTML" /></a>
+            <nav>
+                <div id="empty">
+                </div>
+                <div class="nav black" id="whoIamBtn">
+                    <i aria-hidden="true" class="fa fa-user fa-3x" title="Bio">
+                    </i>
+                    <span>
+                        MOI
+                    </span>
+                </div>
+                <div class="nav" id="projetsBtn">
+                    <i aria-hidden="true" class="fa fa-briefcase fa-3x" title="Projets">
+                    </i>
+                    <span>
+                        PROJETS
+                    </span>
+                </div>
+                <div class="nav" id="reseauxBtn">
+                    <i aria-hidden="true" class="fa fa-comment-o fa-3x" title="Contacts / Réseaux">
+                    </i>
+                    <span>
+                        CONTACTS
+                    </span>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div id="whoIam">
                 <div>
-                    <a href="https://www.javascript.com/" title="JavaScript"><img src="img/js.png" alt="JS" /></a>
-                    <a href="https://angularjs.org/" title="AngularJS"><img src="img/angularjs.png" alt="AngularJS" /></a>
-                </div>            
+                    <h2>
+                        BIO
+                    </h2>
+                    Développeur passionné et autodidacte, je me suis perfectionné au fil des années dans le développement de logiciels et de jeux vidéo. Lors de mon adolescence, j'ai commencé par développer des services d'animation de serveurs de discussion en Perl et en Tcl. J'ai ensuite développé des systèmes d'installations et de gestion de serveur en Bash. Ces dernières années, j'ai surtout développé des modifications de jeu en C#. Dernièrement, j'ai effectué une formation de développeur logiciel ce qui m'a permis d'élargir mes connaissances dans les langages du web, dans les modèles de conception comme le modèle MVC ou MVVM et dans les designs patterns tel que le Singleton, l'Observer ou l'Adapter.
+                </div>
+                <div id="knowledge">
+                    <h2>
+                        CONNAISSANCES
+                    </h2>
+                    <a href="https://www.w3.org/html/" title="HTML">
+                        <img alt="HTML" src="img/html.png"/>
+                    </a>
+                    <div>
+                        <a href="https://www.javascript.com/" title="JavaScript">
+                            <img alt="JS" src="img/js.png"/>
+                        </a>
+                        <a href="https://angularjs.org/" title="AngularJS">
+                            <img alt="AngularJS" src="img/angularjs.png"/>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.mysql.com/" title="MySQL">
+                            <img alt="MySQL" src="img/mysql.png"/>
+                        </a>
+                        <a href="https://sqlite.org/" title="SQLite">
+                            <img alt="SQLite" src="img/sqlite.png"/>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.w3.org/css/" title="CSS">
+                            <img alt="CSS" src="img/css.png"/>
+                        </a>
+                        <a href="http://getbootstrap.com/" title="Bootstrap">
+                            <img alt="Bootstrap" src="img/bootstrap.png"/>
+                        </a>
+                        <a href="http://fontawesome.io/" title="Font Awesome">
+                            <img alt="Font Awesome" src="img/fontawesome.png"/>
+                        </a>
+                        <a href="https://fonts.google.com/" title="Google Font">
+                            <img alt="Google Font" src="img/googlefont.png"/>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.php.net/" title="Php">
+                            <img alt="Php" src="img/php.png"/>
+                        </a>
+                        <a href="https://symfony.com/" title="Symfony">
+                            <img alt="Symfony" src="img/symfony.png"/>
+                        </a>
+                        <a href="https://www.slimframework.com/" title="Slim">
+                            <img alt="Slim" src="img/slim.png"/>
+                        </a>
+                        <a href="https://www.perl.org/" title="Perl">
+                            <img alt="Perl" src="img/perl.png"/>
+                        </a>
+                        <a href="http://www.tcl.tk/" title="Tcl">
+                            <img alt="Tcl" src="img/tcl.png"/>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.java.com/fr/" title="Java">
+                            <img alt="Java" src="img/java.png"/>
+                        </a>
+                        <a href="https://eclipse.org/" title="Eclipse">
+                            <img alt="Eclipse" src="img/eclipse.png"/>
+                        </a>
+                        <a href="https://netbeans.org/" title="NetBeans IDE">
+                            <img alt="NetBeans IDE" src="img/netbeans.png"/>
+                        </a>
+                        <a href="http://www.microsoft.com/net/" title="C#">
+                            <img alt="C#" src="img/csharp.png"/>
+                        </a>
+                        <a href="http://www.monodevelop.com/" title="MonoDevelop">
+                            <img alt="MonoDevelop" src="img/monodevelop.png"/>
+                        </a>
+                        <a href="https://unity3d.com/" title="Unity 3D">
+                            <img alt="Unity3d" src="img/unity3d.png"/>
+                        </a>
+                        <a href="http://www.monogame.net/" title="MonoGame">
+                            <img alt="MonoGame" src="img/monogame.png"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hide" id="projets">
                 <div>
-                    <a href="https://www.mysql.com/" title="MySQL"><img src="img/mysql.png" alt="MySQL" /></a>
-                    <a href="https://sqlite.org/" title="SQLite"><img src="img/sqlite.png" alt="SQLite" /></a>
+                    <h2>
+                        Stats GitHub
+                    </h2>
+                    <ul>
+                        <li onclick="location.href='https://github.com/malahx?tab=repositories'">
+                            <span>
+                                Dépôts actif :
+                            </span>
+                            <span id="github-activeRepos">
+                            </span>
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx?tab=repositories'">
+                            <span>
+                                Dépôts totaux :
+                            </span>
+                            <span id="github-repos">
+                            </span>
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx?tab=followers'">
+                            <span>
+                                Abonnés :
+                            </span>
+                            <span id="github-followers">
+                            </span>
+                        </li>
+                    </ul>
                 </div>
                 <div>
-                    <a href="https://www.w3.org/css/" title="CSS"><img src="img/css.png" alt="CSS" /></a>
-                    <a href="http://getbootstrap.com/" title="Bootstrap"><img src="img/bootstrap.png" alt="Bootstrap" /></a>
-                    <a href="http://fontawesome.io/" title="Font Awesome"><img src="img/fontawesome.png" alt="Font Awesome" /></a>
-                    <a href="https://fonts.google.com/" title="Google Font"><img src="img/googlefont.png" alt="Google Font" /></a>
+                    <h2>
+                        PROJETS D'ENTREPRISES
+                    </h2>
+                    <ul>
+                        <li onclick="location.href='https://github.com/malahx/Test-SpringBoot'">
+                            (SpringBoot/GWT) Test de différentes technologies pour un projet futur
+                        </li>
+                        <li>
+                            (SpringBoot/AngularJS) Gestionnaire d'entretien de véhicule
+                        </li>
+                    </ul>
                 </div>
                 <div>
-                    <a href="https://www.php.net/" title="Php"><img src="img/php.png" alt="Php" /></a>
-                    <a href="https://symfony.com/" title="Symfony"><img src="img/symfony.png" alt="Symfony" /></a>
-                    <a href="https://www.slimframework.com/" title="Slim"><img src="img/slim.png" alt="Slim" /></a>
-                    <a href="https://www.perl.org/" title="Perl"><img src="img/perl.png" alt="Perl" /></a>
-                    <a href="http://www.tcl.tk/" title="Tcl"><img src="img/tcl.png" alt="Tcl" /></a>
-                </div>    
+                    <h2>
+                        PROJETS IMIE
+                    </h2>
+                    <ul>
+                        <li onclick="location.href='https://framagit.org/Malah/PANDER'">
+                            (Java/Swing) Logiciel de matching professionnel
+                        </li>
+                    </ul>
+                </div>
                 <div>
-                    <a href="https://www.java.com/fr/" title="Java"><img src="img/java.png" alt="Java" /></a>
-                    <a href="https://eclipse.org/" title="Eclipse"><img src="img/eclipse.png" alt="Eclipse" /></a>
-                    <a href="https://netbeans.org/" title="NetBeans IDE"><img src="img/netbeans.png" alt="NetBeans IDE" /></a>
-                    <a href="http://www.microsoft.com/net/" title="C#"><img src="img/csharp.png" alt="C#" /></a>
-                    <a href="http://www.monodevelop.com/" title="MonoDevelop"><img src="img/monodevelop.png" alt="MonoDevelop" /></a>
-                    <a href="https://unity3d.com/" title="Unity 3D"><img src="img/unity3d.png" alt="Unity3d" /></a>
-                    <a href="http://www.monogame.net/" title="MonoGame"><img src="img/monogame.png" alt="MonoGame" /></a>
-                </div>                
+                    <h2>
+                        PROJETS AFPA
+                    </h2>
+                    <ul>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/HTML/CV'">
+                            (HTML) Curriculum vitæ
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Solo'">
+                            (JS) Liste de tâche en solo
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Binome'">
+                            (JS) Liste de tâche en binôme
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Binome-API-REST'">
+                            (JS) Liste de tâche en binôme avec une API REST
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/TrackList-PHP-Session'">
+                            (PHP) Liste de musique avec sauvegarde en Session
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/TrackList-PHP-MySQL'">
+                            (PHP) Liste de musique avec sauvegarde en MySQL et Login en Session
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/Tautof-Symfony'">
+                            (PHP/Symfony) Site de petites annonces de voitures
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK/tree/symfony'">
+                            (PHP/Symfony) Site d'une médiathèque
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK'">
+                            (PHP/JS) Site d'une médiathèque avec AngularJS & Slim/Doctrine
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/AngularJS'">
+                            (JS/AngularJS) Exposé et présentation de la technologie
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/CMS/Prestashop'">
+                            (CMS/Prestashop) Site e-commence avec un module de Dicton
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/BDD'">
+                            (MySQL) Développement de procédures stockées et de fonctions sur MySQL
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/MasterCLIMind'">
+                            (Java) Développement du jeu MasterMind en console avec gestion de test unitaire
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/ExoFormation'">
+                            (Java/Swing) Gestionnaire de formation et de stagiaire
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Android/MoneyConverter'">
+                            (Android) Convertisseur de monnaies
+                        </li>
+                        <li onclick="location.href='https://github.com/Valannos/ToListen-Android'">
+                            (Android) Gestionnaire de médias fait en binome
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Android/ToListenServer'">
+                            (C#/NancyFx) Serveur API REST pour un gestionnaire de médias
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>
+                        PROJETS PERSO
+                    </h2>
+                    <ul>
+                        <li onclick="location.href='https://github.com/malahx/Arch-Linux-PKGBUILD'">
+                            (PKGBUILD) Package Arch Linux que je maintiens
+                        </li>
+                        <li onclick="location.href='https://github.com/malahx/PseudoCodeFR'">
+                            (YAML) Coloration syntaxique du pseudo code de l'IMIE Rennes pour Sublime Text
+                        </li>
+                        <li onclick="location.href='http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1'">
+                            (C#) Modifications du jeu Kerbal Space Program
+                        </li>
+                        <li onclick="location.href='https://framagit.org/LMG/SecretProject'">
+                            (C#) Travaux sur le moteur graphique MonoGame
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div id="projets" class="hide">
-            <div>
-                <h2>Stats GitHub</h2>
-                <ul>
-                    <li onclick="location.href='https://github.com/malahx?tab=repositories'"><span>Dépôts actif : </span><span id="github-activeRepos"></span></li>
-                    <li onclick="location.href='https://github.com/malahx?tab=repositories'"><span>Dépôts totaux : </span><span id="github-repos"></span></li>
-                    <li onclick="location.href='https://github.com/malahx?tab=followers'"><span>Abonnés : </span><span id="github-followers"></span></li>
-                </ul>
+            <div class="hide" id="reseaux">
+                <h2>
+                    CONTACTS
+                </h2>
+                <a href="https://www.linkedin.com/in/gw%C3%A9nol%C3%A9-le-henaff-5657a8133?trk=nav_responsive_tab_profile_pic">
+                    <i aria-hidden="true" class="fa fa-linkedin fa-2x">
+                    </i>
+                    Linkedin
+                </a>
+                <a href="http://www.viadeo.com/p/002ykjgzetbb3ov">
+                    <i aria-hidden="true" class="fa fa-viadeo fa-2x">
+                    </i>
+                    Viadeo
+                </a>
+                <a href="https://github.com/malahx">
+                    <i aria-hidden="true" class="fa fa-github fa-2x">
+                    </i>
+                    GitHub
+                </a>
+                <a href="https://framagit.org/u/Malah">
+                    <i aria-hidden="true" class="fa fa-gitlab fa-2x">
+                    </i>
+                    FramaGit
+                </a>
             </div>
-        	<div>
-                <h2>PROJETS D'ENTREPRISE</h2>
-                <ul>
-                    <li onclick="location.href='https://github.com/malahx/Test-SpringBoot'">(Java/SpringBoot/GWT) Test de différentes technologies pour un projet futur</li>
-                </ul>
-            </div>
-            <div>
-                <h2>PROJETS AFPA</h2>
-                <ul>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/HTML/CV'">(HTML) Curriculum vitæ</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Solo'">(JS) Liste de tâche en solo</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Binome'">(JS) Liste de tâche en binôme</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/toDoList-Binome-API-REST'">(JS) Liste de tâche en binôme avec une API REST</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/TrackList-PHP-Session'">(PHP) Liste de musique avec sauvegarde en Session</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/TrackList-PHP-MySQL'">(PHP) Liste de musique avec sauvegarde en MySQL et Login en Session</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/PHP/Tautof-Symfony'">(PHP/Symfony) Site de petites annonces de voitures</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK/tree/symfony'">(PHP/Symfony) Site d'une médiathèque</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA-MediaTeK'">(PHP/JS) Site d'une médiathèque avec AngularJS & Slim/Doctrine</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/JS/AngularJS'">(JS/AngularJS) Exposé et présentation de la technologie</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/CMS/Prestashop'">(CMS/Prestashop) Site e-commence avec un module de Dicton</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/BDD'">(MySQL) Développement de procédures stockées et de fonctions sur MySQL</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/MasterCLIMind'">(Java) Développement du jeu MasterMind en console avec gestion de test unitaire</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Java/ExoFormation'">(Java/Swing) Gestionnaire de formation et de stagiaire</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Android/MoneyConverter'">(Android) Convertisseur de monnaies</li>
-                    <li onclick="location.href='https://github.com/Valannos/ToListen-Android'">(Android) Gestionnaire de médias fait en binome</li>
-                    <li onclick="location.href='https://github.com/malahx/AFPA/tree/master/Android/ToListenServer'">(C#/NancyFx) Serveur API REST pour un gestionnaire de médias</li>
-                </ul>
-            </div>
-            <div>
-                <h2>PROJETS PERSO</h2>
-                <ul>
-                    <li onclick="location.href='http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1'">(C#) Modifications du jeu Kerbal Space Program</li>
-                    <li onclick="location.href='https://framagit.org/LMG/SecretProject'">(C#) Travaux sur le moteur graphique MonoGame</li>
-                </ul>
-            </div>
-        </div>
-        <div id="reseaux" class="hide">
-            <h2>CONTACTS</h2>
-            <a href="https://www.linkedin.com/in/gw%C3%A9nol%C3%A9-le-henaff-5657a8133?trk=nav_responsive_tab_profile_pic"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> Linkedin</a>
-            <a href="http://www.viadeo.com/p/002ykjgzetbb3ov"><i class="fa fa-viadeo fa-2x" aria-hidden="true"></i> Viadeo</a>
-            <a href="https://github.com/malahx"><i class="fa fa-github fa-2x" aria-hidden="true"></i> GitHub</a>
-            <a href="https://framagit.org/u/Malah"><i class="fa fa-gitlab fa-2x" aria-hidden="true"></i> FramaGit</a>
-        </div>
-    </main>
-</body>
-
+        </main>
+    </body>
 </html>
